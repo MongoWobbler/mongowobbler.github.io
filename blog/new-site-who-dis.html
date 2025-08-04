@@ -34,9 +34,9 @@
       Aaaand HTML is still awful as I'm not a fan of tag-based languages, like its counterpart, XML.
 
       <br><br>
-      <h3>
+      <h1>
       Thoughts from making a front-end website from scratch without any prior experience
-      </h3>
+      </h1>
 
     <ul>
       <li>When writing these blogs, doing it in raw HTML sucks. I write them in Obsidian with Markdown and then port them over to HTML using a <a href="https://markdowntohtml.com/">Markdown to HTML Converter.</a></li>
@@ -46,7 +46,13 @@
       <li>Making the website mobile compatible feels like making a whole new website, but it does make you either clean up the CSS or hack something in. For example, the navigation bar in the mobile version is always present but offscreen. Not sure how efficient that is, but it works!</li>
       <li>Adding a dark theme to the site was a fun challenge. My only issue with themes is that I have no idea where to place the theme switcher button! It&#39;s next to the logo currently, which looks fine on mobile, but the desktop version makes the logo look a bit sunny...</li>
       <li>Finding resources to learn how front-end works was challenging at first. At last, I stumbled across <a href="https://hyperskill.org/">Hyperskill</a> Frontend Developer course and their study plan section, which is a great index of everything needed to understand the front-end. Instead of making you go through learning what&#39;s a variable, you can skip what you already know and go straight into the unknown! Personally, I had trouble understanding how the three languages all talked to each other, but the course made it pretty clear</li>
+      <li>WebStorm doesn't work if you don't include the <code>.html</code> suffix in the <code>href</code> link. This is frustrating. According to a <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/13807792622738-webstorm-project-problem-overview-not-recognizing-errors-in-html-variable-usage">JetBrains support post</a> it works in PhpStorm. So may need to switch to that IDE even though I don't plan on writing any PHP, which makes no sense.</li>
     </ul>
+
+    <br>
+    <p>
+      Check out the source code for this site at <a href="https://github.com/mongowobbler/mongowobbler.github.io">https://github.com/mongowobbler/mongowobbler.github.io</a>
+    </p>
 
     <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
   </div>

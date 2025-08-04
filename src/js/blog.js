@@ -69,7 +69,7 @@ export function addBlogFooter() {
     blogPostElement.appendChild(row);
 
     const previousLink = document.createElement('a');
-    previousLink.href = `${previous.blog.filename}.html`;
+    previousLink.href = previous.blog.filename;
     previousLink.title = previous.blog.title;
     previousLink.className = 'blog-footer-previous';
     row.appendChild(previousLink);
@@ -94,7 +94,7 @@ export function addBlogFooter() {
     previousLink.appendChild(previousColumn);
 
     const nextLink = document.createElement('a');
-    nextLink.href = `${next.blog.filename}.html`;
+    nextLink.href = next.blog.filename;
     nextLink.title = next.blog.title;
     nextLink.className = 'blog-footer-next';
     row.appendChild(nextLink);
@@ -159,7 +159,7 @@ export async function generateBlogGallery() {
     const mainElement = document.getElementById('main');
     for (const blog of blogs.reverse()) {
 
-        const filename = `blog/${blog.filename}.html`;
+        const filename = `blog/${blog.filename}`;
         const row = document.createElement('div');
         row.className = 'blog-outer';
         mainElement.appendChild(row);
@@ -194,7 +194,7 @@ export async function generateBlogGallery() {
         text.appendChild(title);
 
         const description = document.createElement('p');
-        const resp = await fetch(filename);
+        const resp = await fetch(`${filename}.html`);
         const html_text = await resp.text();
         const firstParagraph = html_text.split("<p>")[1].split("</p>")[0];
         description.textContent = getDescription(firstParagraph, 150).replaceAll("<br>", "\n");

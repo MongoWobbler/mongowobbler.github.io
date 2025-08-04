@@ -123,37 +123,37 @@ class HeaderComponent extends HTMLElement {
 
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="${relativePath}/animation.html" class="nav-link">ANIMATION</a>
+                    <a href="${relativePath}/animation" class="nav-link">ANIMATION</a>
                     <div class="dropdown">
                         <a href="${relativePath}/" class="dropdown-item">Character Animation</a>
-                        <a href="${relativePath}/animation/other.html" class="dropdown-item">Motion Media</a>
+                        <a href="${relativePath}/animation/other" class="dropdown-item">Motion Media</a>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a href="${relativePath}/scripts.html" class="nav-link">SCRIPTS</a>
+                    <a href="${relativePath}/scripts" class="nav-link">SCRIPTS</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="${relativePath}/art.html" class="nav-link">ART</a>
+                    <a href="${relativePath}/art" class="nav-link">ART</a>
                     <div class="dropdown">
-                        <a href="${relativePath}/art/traditional.html" class="dropdown-item">Traditional</a>
-                        <a href="${relativePath}/art/illustrations.html" class="dropdown-item">Illustrations</a>
-                        <a href="${relativePath}/art/sketches.html" class="dropdown-item">Sketches</a>
-                        <a href="${relativePath}/art/album-artwork.html" class="dropdown-item">Album Artwork</a>
+                        <a href="${relativePath}/art/traditional" class="dropdown-item">Traditional</a>
+                        <a href="${relativePath}/art/illustrations" class="dropdown-item">Illustrations</a>
+                        <a href="${relativePath}/art/sketches" class="dropdown-item">Sketches</a>
+                        <a href="${relativePath}/art/album-artwork" class="dropdown-item">Album Artwork</a>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a href="${relativePath}/blog.html" class="nav-link">BLOG</a>
+                    <a href="${relativePath}/blog" class="nav-link">BLOG</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="${relativePath}/resume.html" class="nav-link">RESUME</a>
+                    <a href="${relativePath}/resume" class="nav-link">RESUME</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="${relativePath}/about.html" class="nav-link">ABOUT</a>
+                    <a href="${relativePath}/about" class="nav-link">ABOUT</a>
                 </li>
 
             </ul>
@@ -166,12 +166,12 @@ class HeaderComponent extends HTMLElement {
             <div class="bar2"></div>
             <div class="bar3"></div>
             <ul class="mobile-menu">
-                <li><a href="${relativePath}/animation.html" class="nav-link">ANIMATION</a></li>
-                <li><a href="${relativePath}/scripts.html" class="nav-link">SCRIPTS</a></li>
-                <li><a href="${relativePath}/art.html" class="nav-link">ART</a></li>
-                <li><a href="${relativePath}/blog.html" class="nav-link">BLOG</a></li>
-                <li><a href="${relativePath}/resume.html" class="nav-link">RESUME</a></li>
-                <li><a href="${relativePath}/about.html" class="nav-link">ABOUT</a></li>
+                <li><a href="${relativePath}/animation" class="nav-link">ANIMATION</a></li>
+                <li><a href="${relativePath}/scripts" class="nav-link">SCRIPTS</a></li>
+                <li><a href="${relativePath}/art" class="nav-link">ART</a></li>
+                <li><a href="${relativePath}/blog" class="nav-link">BLOG</a></li>
+                <li><a href="${relativePath}/resume" class="nav-link">RESUME</a></li>
+                <li><a href="${relativePath}/about" class="nav-link">ABOUT</a></li>
             </ul>
         </div>
         
