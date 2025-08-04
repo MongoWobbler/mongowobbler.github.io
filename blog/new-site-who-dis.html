@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Site: Who Dis?</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(4)</script>
+
+    <p>
+      I was tired of paying moneys to Wix.com on a subscription basis just for letting me have
+      used their site editor once over 10 years ago. Therefore, I decided to code the website myself.
+      I'm only just now uploading the website to GitHub Pages, and I still need to port over the rest of the content
+      from the previous site to the new site. This site should have all the pieces needed to easily port the content!
+    </p>
+
+    <img src="https://static8.depositphotos.com/1057263/924/i/450/depositphotos_9243267-stock-photo-hands-giving-money-isolated-on.jpg"
+         alt="Handing Money Over" style="display: block; margin-left: auto; margin-right: auto; width: 35%; justify-content: center; justify-self: center; align-self: center; object-fit: cover;">
+
+    <p>
+      <br>
+      This site project was a good excuse to learn CSS (Cascading Style Sheets).
+      On the other hand, JavaScript was similar enough to other programming languages that
+      it didn't really feel like learning it, more like figuring out the documentation and API.
+      Aaaand HTML is still awful as I'm not a fan of tag-based languages, like its counterpart, XML.
+
+      <br><br>
+      <h3>
+      Thoughts from making a front-end website from scratch without any prior experience
+      </h3>
+
+    <ul>
+      <li>When writing these blogs, doing it in raw HTML sucks. I write them in Obsidian with Markdown and then port them over to HTML using a <a href="https://markdowntohtml.com/">Markdown to HTML Converter.</a></li>
+      <li>Similarly, with math equations, HTML has a child format called MathML which sucks to write, which is why <a href="https://temml.org/">Temml - Convert TeX to MathML</a> exists!</li>
+      <li>I really wish there was a way to reuse the Head section in HTML more easily, but I ran into errors trying to encapsulate it.</li>
+      <li>WebStorm as an IDE is OK. Ran into a fun issue where the out-of-the-box WebStorm server includes the project name in the address, so you can&#39;t use absolute paths in the HTML files. Worked around it by specifying a <code>relativePath</code> variable in every file that lets file get back to the root of the project to be able to find anything from there. The other solution would have been to run my own server with Apache or something else, which maybe I&#39;ll do, but I just wanted to code and figuring out how to use CSS, JavaScript, and HTML and have them all talk to each other was already challenging enough.</li>
+      <li>Making the website mobile compatible feels like making a whole new website, but it does make you either clean up the CSS or hack something in. For example, the navigation bar in the mobile version is always present but offscreen. Not sure how efficient that is, but it works!</li>
+      <li>Adding a dark theme to the site was a fun challenge. My only issue with themes is that I have no idea where to place the theme switcher button! It&#39;s next to the logo currently, which looks fine on mobile, but the desktop version makes the logo look a bit sunny...</li>
+      <li>Finding resources to learn how front-end works was challenging at first. At last, I stumbled across <a href="https://hyperskill.org/">Hyperskill</a> Frontend Developer course and their study plan section, which is a great index of everything needed to understand the front-end. Instead of making you go through learning what&#39;s a variable, you can skip what you already know and go straight into the unknown! Personally, I had trouble understanding how the three languages all talked to each other, but the course made it pretty clear</li>
+    </ul>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

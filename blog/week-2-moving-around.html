@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Week 2: Moving Around</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners();</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+<main id="main">
+<div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(2)</script>
+
+    <p>
+        Honestly, not a lot of progress lately as life has kept me super busy, so I have had to put this project on the backburner. But I'll get back to you soon enough!<br>
+        Got the player to move around by clicking or pressing an area on the screen. Works on the editor, have not deployed on phone yet to test.<br>
+        Also got a bunch of objects spawning with physics applied, woo!<br>
+        The red spheres is the location in World Space where input is detected. For now Player will only travel left to right, no up and down yet.<br.
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+</div>
+</main>
+<footer-component></footer-component>
+</body>
+</html>
