@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(13)</script>
+
+
+    <p>
+      Moo.
+    </p>
+    <iframe class="blog-post-marmoset" src="https://www.artstation.com/embed/33609666" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+
+    <p>
+      For piper's rigging system, my goal is to use matrices only to practice matrix math.
+      Therefore, here is a script for a simple <a href="https://bindpose.com/maya-matrix-based-functions-part-1-node-based-matrix-constraint/">matrix constraint thanks Vasil Shotarov.</a>
+    </p>
+
+<pre class="language-python"><code>
+import pymel.core as pm
+
+def parentMatrixConstraint(driver=None, target=None, t=True, r=True, s=True, offset=False):
+    if not driver or not target:
+        selected = pm.selected()
+
+        if len(selected) < 2:
+            pm.error('Not enough items selected and no driver or target found!')
+
+        driver = selected[-2]
+        target = selected[-1]
+
+    matrix_multiplication = pm.createNode('multMatrix')
+    decompose_matrix = pm.createNode('decomposeMatrix')
+
+    if offset:
+        offset = target.worldMatrix.get() * driver.worldInverseMatrix.get()
+        matrix_multiplication.matrixIn[0].set(offset)
+        driver.worldMatrix[0] >> matrix_multiplication.matrixIn[1]
+        target.parentInverseMatrix[0] >> matrix_multiplication.matrixIn[2]
+    else:
+        driver.worldMatrix[0] >> matrix_multiplication.matrixIn[0]
+        target.parentInverseMatrix[0] >> matrix_multiplication.matrixIn[1]
+
+    matrix_multiplication.matrixSum >> decompose_matrix.inputMatrix
+
+    if t:
+        decompose_matrix.outputTranslate >> target.translate
+
+    if r:
+        decompose_matrix.outputRotate >> target.rotate
+
+    if s:
+        decompose_matrix.outputScale >> target.scale
+</code></pre>
+
+    <p>
+      <br>More matrix math to come!
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

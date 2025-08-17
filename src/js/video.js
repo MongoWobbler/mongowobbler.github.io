@@ -53,5 +53,12 @@ export function generateVideos(videos)
         const videoDescriptionText = document.createElement('p');
         videoDescriptionText.textContent = video.description;
         videoDescription.appendChild(videoDescriptionText);
+
+        if (video.hasOwnProperty("script")) {
+            const videoScript = document.createElement('a');
+            videoScript.href = video.script;
+            videoScript.textContent = "\n" + video.script;
+            videoDescription.appendChild(videoScript);
+        }
     }
 }

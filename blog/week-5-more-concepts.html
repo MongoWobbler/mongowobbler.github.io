@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(5)</script>
+
+        <p>
+            Moved across states for the seventh time in my lifetime, so progress has been slow.
+            However, I am now set up and ready to make some more work! Here are some new concepts for characters.
+            Mr. Narwhal came naturally, but the sloth took at least six different iterations,
+            and I am still not too happy with the result. I might redraw the sloth some more times in the future.
+            Anyway, how would you spell out a turtle sound?
+        </p>
+
+        <img src="https://i.imgur.com/v7hH9WI.png" alt="Waooer" class="blog-post-image" style="width: 40%">
+        <img src="https://i.imgur.com/2CFaauM.png" alt="turter" class="blog-post-image" style="width: 80%">
+        <img src="https://i.imgur.com/GuQmYYv.png" alt="Slother" class="blog-post-image" style="width: 40%">
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

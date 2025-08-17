@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(23)</script>
+
+
+        <p>
+            <a href="https://github.com/MongoWobbler/piper">Piper</a> has been updated to support Python 3/Maya 2022.
+            The main caveat for piper was the relative/absolute import statements that are necessary when you import
+            a bunch of modules into a __init__.py. Besides that, take note of divisions where you expect an int,
+            because Python 3 will return a float when dividing.
+            Then there's obviously the print function that
+            any <a href="https://matiascodesal.com/blog/how-to-convert-maya-python-2-code-to-python-3/">python 2 to 3 converter</a> should take care of,
+            along with range/xrange and a few others.<br><br>
+
+            Moving on to the rigging segment of the blog post, FK controls now include a local control that
+            only moves the driven transform and nothing else. Similar to a butt control that moves only
+            the hips and is parented under the Center of Gravity (CoG) control.
+        </p>
+
+        <img src="https://i.imgur.com/fsmgWHV.gif" alt="Johnny Jupiter's leg being manipulated by FK control" class="blog-post-image" style="width: 100%">
+
+        <hr>
+
+        <p>
+            Last but not least, space switching is made easy through a Graphical User Interface (GUI)! <br>
+            GUI provides regular space switching on controls with space attributes, FK/IK switching on
+            controls with FK/IK attributes (including proxies!), and resetting dynamic pivot transforms.
+            More on dynamic pivots next week, probably. <br>
+            When switching spaces, the user can turn off/on matching on the translation, rotate, and/or scale channels.
+        </p>
+
+        <img src="https://i.imgur.com/eASFv2o.png" alt="Piper's Space Switching GUI" class="blog-post-image" style="width: 50%">
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

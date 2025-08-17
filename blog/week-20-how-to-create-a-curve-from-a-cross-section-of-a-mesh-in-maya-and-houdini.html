@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <link rel="stylesheet" href="../src/css/gist.css"/>
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(21)</script>
+
+    <h2>Maya</h2>
+
+    <ol>
+      <li>Create a plane that goes across mesh to represent the cross-section.</li>
+      <li>Boolean difference mesh minus plane with the intersection classification option set to <code class="language-text">Normal</code>.</li>
+      <li>Select the edge loop that was just created by the boolean difference.</li>
+      <li>Modify > Convert > Polygon Edges to Curve.</li>
+    </ol>
+
+    <p>Alternatively, use the following script to create the cross-section at the origin.</p>
+
+    <script src="https://gist.github.com/MongoWobbler/d5340ce45332144579605a99b445d2a4.js"></script>
+
+    <p>After running the script, you get a curve!</p>
+
+    <img src="https://i.imgur.com/KytZGzt.png" alt="Curve around Clucker's foot" class="blog-post-image" style="width: 50%">
+
+    <h2>Houdini</h2>
+
+    <ol>
+      <li>Get SideFX Labs.</li>
+      <li>Make a geo object.</li>
+      <li>Inside the geo object, make the following:
+        <ol type="a">
+          <li>The geometry you want to make a cross-section curve of.</li>
+          <li>A clip SOP, set <code class="language-text">Keep</code> to <code class="language-text">All Primitives</code>.</li>
+          <li>Next, make a group SOP, where you group <br>edges</br> by bounding box. Make the Y size tiny,
+            like 0.0001 small, and the other axis bigger than your bounding box.</li>
+          <li>Finally, create the Edge Group to Curve SOP and select the group you made previously.</li>
+        </ol>
+      </li>
+    </ol>
+
+    <img src="https://i.imgur.com/pKCqT5f.png" alt="Houdini's Nodes for a Cross Section" class="blog-post-image" style="width: 35%">
+
+    <img src="https://i.imgur.com/9Coeh5i.png" alt="Cross Section of a Pig in Houdini" class="blog-post-image" style="width: 65%">
+
+    <p>Alternatively, download the <a href="https://drive.google.com/file/d/1tGvcY4cjC07srRc9O9XWj-ntXw17yVhW/view?usp=sharing">Cross-Section HDA</a></p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

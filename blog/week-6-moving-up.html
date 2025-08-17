@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(6)</script>
+
+
+    <p>
+      Got a good chunk of progress with the movement system. Unfortunately, it is still not working correctly.
+      I have a feeling it is either because of UE4's physics sub-stepping messing with an object's velocity
+      over time OR because of a bad trajectory prediction calculation on my part.
+      Let's be honest, it is probably the latter. <br>
+
+      Regardless, I got the character moving in a curve to a specific spot over a specific time with proper rotations,
+      woo-hoo! I still need to lerp the character's rotation between the curve rotation and the rotation
+      derived from the nearest normal of nearby falling objects so that the character looks attached to the falling object. <br>
+
+      The camera also follows the player along! Once I get the movement system down,
+      I can start adding game conditions such as game start, game end, and scoring.<br><br>
+    </p>
+
+    <img src="https://media.giphy.com/media/zLooKuKAXXuIkFmtRW/giphy.gif" alt="Mooer" class="blog-post-image" style="width: 40%">
+
+    <br><br>
+    <p>SLOW MO!!! Hope to be adding more slow motion features in the future</p>
+    <img src="https://media.giphy.com/media/513h7rRU8MTFPBvT8K/giphy.gif" alt="Oinker" class="blog-post-image" style="width: 40%">
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

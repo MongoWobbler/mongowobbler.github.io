@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <link rel="stylesheet" href="../src/css/gist.css"/>
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(35)</script>
+
+
+    <p>
+        This week's improvements include simplifying the process of writing a rig script.
+        In the past, I had 37 lines of python code to rig the Blobber, and now it only takes the following 12 lines!
+        <a href="https://www.geeksforgeeks.org/context-manager-in-python/">Context managers</a> (the usage of the keyword <code class="language-python">with</code> in the script) are straightforward to use and implement
+        when you have to run processes that need starting up and cleaning up when the class is initialized.
+    </p>
+
+    <script src="https://gist.github.com/MongoWobbler/2507530086c66d7f61cb0d87194c0cb9.js"></script>
+
+    <p>
+        Getting some use of the root squash and stretch with the jump animations! The current implementation involves
+        playing an animation montage when the jump algorithm has decided that a jump <i>will</i> occur, but <i>before</i> the
+        jump start event is called to have a few squat anticipation frames before the jump. After the montage plays,
+        the animation blueprint takes over again by going into the first frame of the stretch jump animation and
+        finally moving onto the jump idle. In the future I'll be blending in the jump idle with the land animation
+        pose by lerping them with the normalized jump progress. Anyway, below is the blobber squashing and stretching,
+        but mostly squashing!
+    </p>
+
+    <img src="https://i.imgur.com/p7YQmID.gif" alt="Blobber Jumping in Unreal Engine with Squash and Stretch" class="blog-post-image" style="width: 100%">
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

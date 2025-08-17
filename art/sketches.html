@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SKETCHES | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+    <script type="module">
+        import { openLightbox, closeLightbox, previousArtwork, nextArtwork, addLightboxListeners }
+            from "../src/js/lightbox.js"
+        import { galleries } from "../src/js/config/galleries.js"
+        window.openLightbox = openLightbox;
+        window.closeLightbox = closeLightbox;
+        window.previousArtwork = previousArtwork;
+        window.nextArtwork = nextArtwork;
+        addLightboxListeners(galleries.sketches);
+    </script>
 </head>
 <body>
+<header-component></header-component>
+<main id="main">
 
+    <lightbox-component></lightbox-component>
+
+</main>
+<footer-component></footer-component>
 </body>
 </html>

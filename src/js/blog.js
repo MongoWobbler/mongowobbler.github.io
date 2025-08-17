@@ -24,6 +24,8 @@ export function addBlogHeader(blog_index) {
     date.className = 'blog-post-date';
     date.textContent = blog.date;
     blogPostElement.insertAdjacentElement("afterbegin", date);
+
+    document.title = blog.title;
 }
 
 /**
@@ -195,9 +197,10 @@ export async function generateBlogGallery() {
 
         const description = document.createElement('p');
         const resp = await fetch(`${filename}.html`);
-        const html_text = await resp.text();
-        const firstParagraph = html_text.split("<p>")[1].split("</p>")[0];
-        description.textContent = getDescription(firstParagraph, 150).replaceAll("<br>", "\n");
+        const htmlText = await resp.text();
+        const firstParagraph = htmlText.split("<p>")[1].split("</p>")[0];
+        const cleanedFirstParagraph = firstParagraph.replace(/<[^>]*>(.*?)<\/[^>]*>/gi, '$1');  // removes any HTML tags from the text
+        description.textContent = getDescription(cleanedFirstParagraph, 150);
         text.appendChild(description);
 
     }

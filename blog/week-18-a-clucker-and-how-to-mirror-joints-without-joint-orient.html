@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(19)</script>
+
+    <p>Finished the initial sculpting for a clucker, now to retopologize, UV, add detail, and texture, said clucker.</p>
+
+    <img src="https://i.imgur.com/V8qryAo.jpeg" alt="Clucker" class="blog-post-image" style="width: 100%">
+
+    <hr>
+
+    <p>
+      Onto joint orients: Maya's joint orient attributes are seen by some as a nicety since you can hide rotate
+      values in them. Others see joint orient attributes as an abomination because they are unique to
+      Maya and obfuscate the actual rotation value. I belong to the latter group. Unfortunately,
+      Maya does not make it easy to create a skeleton without joint orient values.
+      In comes the following couple nifty helper functions I wrote to help with
+      joint hierarchy creation without any joint orient values.<br><br>
+
+      First up, is a function to parent joints while maintaining joint orient values at (0, 0, 0).
+    </p>
+
+<pre class="language-python"><code style="white-space: pre-wrap">def parentTransforms(*transforms):
+    """
+    Parents transforms to the last given transform and gets rid of joint orient values if transform is a joint.
+
+    Args:
+        transforms (list or pm.nodetypes.Transform): Transforms to parent. Last transform is the parent of the rest.
+        Minimum of two objects.
+    """
+    for joint in transforms[:-1]:
+
+        if isinstance(joint, pm.nodetypes.Joint):
+            matrix = joint.worldMatrix.get()
+            pm.parent(joint, transforms[-1])
+            joint.jointOrient.set(0, 0, 0)
+            pm.xform(joint, ws=True, m=matrix)
+        else:
+            pm.parent(joint, transforms[-1])
+</code></pre>
+
+    <p>
+      Example:
+    </p>
+
+<pre class="language-python"><code>import pymel.core as pm
+
+selected = pm.selected()
+to_be_child = selected[0]
+to_be_parent = selected[1]
+parentTransforms([to_be_child, to_be_parent])
+</code></pre>
+
+    <hr>
+
+    <p>
+      With this new parentTransforms function, we can easily mirror joints without having those pesky 180 degrees
+      added to the joint orient value.
+    </p>
+
+<pre class="language-python"><code style="white-space: pre-wrap">def mirrorRotate(transforms=pm.selected(), axis='x', swap=['', '']):
+    """
+    Mirrors the given transforms across the given axis set up to be used as a mirror rotate transform.
+
+    Args:
+        transforms (list): Transforms to mirror across given axis.
+
+        axis (string): Name of axis to mirror across.
+
+        swap (list): Words to search and replace. Will search for first index, and replace with second index.
+
+    Returns:
+        (list): Joints that were mirrored. Note that all their children get mirrored as well.
+    """
+    mirrored_transforms = []
+    options = {'mxy': False, 'myz': False, 'mxz': False, 'mb': True, 'sr': swap}
+
+    if axis == 'x':
+        options['myz'] = True
+    elif axis == 'y':
+        options['mxz'] = True
+    elif axis == 'z':
+        options['mxy'] = True
+    else:
+        pm.error('No valid axis given. Pick "x", "y", or "z".')
+
+    for transform in transforms:
+        name = transform.nodeName()
+
+        mirrored_joint = pm.mirrorJoint(transform, **options)[0]
+        mirrored_joint = pm.PyNode(mirrored_joint)
+        mirrored_transforms.append(mirrored_joint)
+        parent = mirrored_joint.getParent()
+
+        if mirrored_joint.getParent():
+            pm.parent(mirrored_joint, w=True)
+            parentTransforms(mirrored_joint, parent)
+
+    return mirrored_transforms
+</code></pre>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

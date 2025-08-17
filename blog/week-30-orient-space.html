@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(31)</script>
+
+
+    <p>
+      <a href="https://github.com/MongoWobbler/piper/blob/48a6226488e1b1a822e8aebe88ae5b66801dd3c8/piper/mayapy/rig/space.py">Space.py</a> script
+        has been upgraded to include the <i>useOrient</i> attribute. When the <i>useOrient</i> attribute is switched to <i>On</i>,
+        the transform maintains its own orientation. I personally often use it to animate shrugs as seen in the GIF below.
+    </p>
+
+    <img src="https://i.imgur.com/4bA17Zs.gif" alt="Johnny Jupiter Shrugging" class="blog-post-image" style="width: 60%">
+
+    <p>
+      The only controls animated are the clavicle controls. The right side (red controls), has orient space turned off,
+      and hence the arm continues with regular forward kinematics. The left side (blue controls), has orient space
+      turned off, which means the arm keeps its 45-degree angle with the body.
+    </p>
+
+    <hr>
+
+    <p>
+      As of now, there is only one item left
+      in <a href="https://github.com/MongoWobbler/piper/projects/1">Piper's to-do list!</a> Afterward,
+      I'll finally start animating and move on to what this blog is really supposed to be about, game development.
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

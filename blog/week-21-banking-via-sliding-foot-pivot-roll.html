@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(22)</script>
+
+
+    <p>
+      Thanks to the work of <a href="https://chrislesage.com/character-rigging/using-a-unit-vector-to-make-a-cylindrical-foot-roll/">Chris Lesage</a>
+      and <a href="https://robotsquids.blogspot.com/2013/09/sliding-pivot-foot-roll-tutorial.html">Armin Halac</a>,
+      we have this cool way of animating banking: a dynamic pivot on a track via curves!
+    </p>
+
+    <img src="https://i.imgur.com/DNoB5CS.gif" alt="Banking Script on Mooer" class="blog-post-image" style="width: 100%">
+
+    <p>
+      Snag the banking script <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/rig/__init__.py">here</a>.
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

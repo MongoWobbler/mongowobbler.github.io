@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(14)</script>
+
+    <p>
+      This week's character is Oliver. He wears a magical headband that always flaps in the wind even when there is no wind.
+    </p>
+
+    <iframe class="blog-post-marmoset" src="https://www.artstation.com/embed/33940714" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+
+    <p>
+      <br>So far he is one of the characters that have changed the least after the initial VR sculpting in Adobe Medium.
+      Here you can compare sculpting in VR (top) vs. finished product (bottom).
+    </p>
+
+    <img src="https://i.imgur.com/WEvALBy.jpeg" alt="Oliver VR" class="blog-post-image" style="width: 70%">
+    <img src="https://i.imgur.com/RI6rTWR.png" alt="Oliver Render" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>
+      My process has been consistent so far. Initial concept in pen and paper, revision in Photoshop.
+      Start sculpting in Adobe Medium, bring sculpting into Maya to fix transform, then onto Topogun for retopology.
+      Export from Topogun back into Maya to rename, create simple UVs. Then onto Houdini for more complex auto UVs.
+      After Houdini, the character goes into Zbrush for details and high-poly pass. High poly and low poly are exported
+      back again to Maya for renaming and for UVs sanity checks. Then to Substance Painter for baking maps and
+      painting textures. Finally, to Marmoset Toolbag for rendering. All in all, the character ends up going
+      through eight different applications in one way or another.<br><br>
+
+      Onto rigging/math/scripting. Last week's parent matrix constraint did not account for joint orient values.
+      This week's parent matrix constraint does account for joint orient values.
+      Woo, progress! <a href="https://www.youtube.com/watch?v=_LNhZB8jQyo">Thanks to Jarred Love for his insight.</a>
+    </p>
+
+<pre class="language-python"><code>
+import pymel.core as pm
+
+def parentMatrixConstraint(driver=None, target=None, t=True, r=True, s=True, offset=False, joint_orient=False):
+    """
+    Creates a parent matrix constraint between given driver and target. Could use selected objects too.
+
+    Shout-out to Jarred Love for his tutorials.
+
+    Args:
+        driver (pm.nodetypes.Transform): Transform that will drive the given target
+
+        target (pm.nodetypes.Transform): Transform that will be driven by given driver.
+
+        t (boolean): If True, will connect translate channel to be driven.
+
+        r (boolean): If True, will connect rotate channel to be driven.
+
+        s (boolean): If True, will connect scale channel to be driven.
+
+        offset (boolean): If True, will maintain current transform relation between given driver and target.
+
+        joint_orient (boolean): If True, AND given target transform has non-zero joint orient values,
+        will create extra nodes to account for such values. Else will set joint orient values to zero.
+    """
+    if not driver or not target:
+        selected = pm.selected()
+
+        if len(selected) < 2:
+            pm.error('Not enough items selected and no driver or target found!')
+
+        driver = selected[-2]
+        target = selected[-1]
+
+    name = target.nodeName()
+    matrix_multiplication = pm.createNode('multMatrix', n=name + pcfg.parent_matrix_mult_suffix)
+    decompose_matrix = pm.createNode('decomposeMatrix', n=name + pcfg.parent_matrix_decomp_suffix)
+
+    if offset:
+        offset = target.worldMatrix.get() * driver.worldInverseMatrix.get()
+        matrix_multiplication.matrixIn[0].set(offset)
+        driver.worldMatrix[0] >> matrix_multiplication.matrixIn[1]
+        target.parentInverseMatrix[0] >> matrix_multiplication.matrixIn[2]
+    else:
+        driver.worldMatrix[0] >> matrix_multiplication.matrixIn[0]
+        target.parentInverseMatrix[0] >> matrix_multiplication.matrixIn[1]
+
+    matrix_multiplication.matrixSum >> decompose_matrix.inputMatrix
+
+    if t:
+        decompose_matrix.outputTranslate >> target.translate
+
+    if r:
+        if target.hasAttr('jointOrient') and target.jointOrient.get() != pm.dt.Vector(0, 0, 0):
+            if joint_orient:
+                compose_matrix = pm.createNode('composeMatrix', n=name + pcfg.parent_matrix_rot_comp_suffix)
+                compose_matrix.inputRotate.set(target.jointOrient.get())
+                parent = target.getParent()
+
+                if parent:
+                    mult_rot_matrix = pm.createNode('multMatrix', n=name + pcfg.parent_matrix_rot_mult_suffix)
+                    compose_matrix.outputMatrix >> mult_rot_matrix.matrixIn[0]
+                    parent.worldMatrix >> mult_rot_matrix.matrixIn[1]
+                    joint_orient_matrix_output = mult_rot_matrix.matrixSum
+                else:
+                    joint_orient_matrix_output = compose_matrix.outputMatrix
+
+                inverse_matrix = pm.createNode('inverseMatrix', n=name + pcfg.parent_matrix_rot_inv_suffix)
+                joint_orient_matrix_output >> inverse_matrix.inputMatrix
+
+                mult_rot_matrix = pm.createNode('multMatrix', n=name + pcfg.parent_matrix_rot_mult_suffix)
+
+                if offset:
+                    offset = target.worldMatrix.get() * driver.worldInverseMatrix.get()
+                    mult_rot_matrix.matrixIn[0].set(offset)
+                    driver.worldMatrix >> mult_rot_matrix.matrixIn[1]
+                    inverse_matrix.outputMatrix >> mult_rot_matrix.matrixIn[2]
+                else:
+                    driver.worldMatrix >> mult_rot_matrix.matrixIn[0]
+                    inverse_matrix.outputMatrix >> mult_rot_matrix.matrixIn[1]
+
+                rotate_decompose = pm.createNode('decomposeMatrix', n=name + pcfg.parent_matrix_rot_decomp_suffix)
+                mult_rot_matrix.matrixSum >> rotate_decompose.inputMatrix
+                rotate_decompose.outputRotate >> target.rotate
+
+            else:
+                target.jointOrient.set((0, 0, 0))
+                decompose_matrix.outputRotate >> target.rotate
+
+        else:
+            decompose_matrix.outputRotate >> target.rotate
+
+    if s:
+        decompose_matrix.outputScale >> target.scale
+</code></pre>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

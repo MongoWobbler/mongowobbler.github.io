@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(8)</script>
+
+
+        <p>
+            This week's achievements include bidirectional platforms and character movement polish.<br><br>
+
+            Bidirectional platforms work similarly to how platforms in Super Smash Brothers work.
+            On tick, if the player is above the platform, set collision to Block, else if the player is below the platform,
+            set collision to Overlap. As soon as I finished writing the previous sentence,
+            I thought of a more elegant solution that does not rely on tick... <br>
+
+            New solution: Add two box overlap components to the platform that size up or down
+            their width based on the static mesh collision bounds on construction.
+            Then, when the player overlaps with the component above, the static mesh collision would be set to Block.
+            If the player overlaps with the box component below, the collision would be set to overlap.
+            I will be implementing this new solution soon.
+            <a href="https://trello.com/c/HNnP8IG0/48-try-box-component-overlap-for-setting-collision-channels-on-platforms">Follow along my progress here!</a>
+            <br><br>
+
+            I have polished the movement by turning physics on and off on the character.
+            Now the character feels way more alive and animated!
+            Physics only gets turned on when the character fails to attach or when the actor the
+            character is attached to gets destroyed, so the character still moves to where the user touches
+            without its movement being interfered with the physics engine.
+            Speaking of physics, having this many objects simulate physics on a mobile device is fine, right?<br><br>
+        </p>
+
+
+        <img src="https://media.giphy.com/media/IIpp3TyJgZQq5Valgf/giphy.gif" alt="Hopping onto Platform " class="blog-post-image" style="width: 50%">
+        <img src="https://media.giphy.com/media/FsK99xst0p9n6ZnfSk/giphy.gif" alt="Attaching to Faller" class="blog-post-image" style="width: 50%">
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

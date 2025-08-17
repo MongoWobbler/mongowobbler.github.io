@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(24)</script>
+
+
+    <p>
+      The <a href="https://github.com/MongoWobbler/piper/blob/8811af92facc6ed17c1dabf6b73d4312aba20488/piper/mayapy/rig/__init__.py#L543">implementation is a bit more hacky</a> than
+      I would prefer. However, it works for now and it's straightforward to add to an existing IK 😊 <br>
+      The reverse IK gave me a chance to refactor the switcher control script and made me realize I need to
+      start using <a href="http://www.losart3d.com/?p=97473">message attributes</a> more often.
+    </p>
+
+    <img src="https://i.imgur.com/GmIZvra.gif" alt="Johnny Jupiter's leg being manipulated by Reverse IK control" class="blog-post-image" style="width: 100%">
+
+    <hr>
+
+    <p>
+      Next week I'll be moving onwards to scaling 💀
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

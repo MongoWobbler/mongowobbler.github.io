@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(17)</script>
+
+    <p>
+      New concepts. I might start sculpting some of these soon.
+    </p>
+
+    <img src="https://i.imgur.com/dNiSh7p.png" alt="Starbuster" class="blog-post-image" style="width: 40%">
+    <img src="https://i.imgur.com/1BrWhin.png" alt="Muffinner" class="blog-post-image" style="width: 80%">
+    <img src="https://i.imgur.com/mVv1bO6.png" alt="Sunflower" class="blog-post-image" style="width: 40%">
+    <img src="https://i.imgur.com/VjXrz59.png" alt="Cacter" class="blog-post-image" style="width: 80%">
+
+    <hr>
+
+    <p>
+      3D printed Johnny Jupiter, <a href="https://trello.com/b/9Es9FHkv/piper">soon I hope to have the rigging system</a> up and functional,
+      so I can pose Johnny Jupiter and 3D print him in a cool or fun pose<br>
+    </p>
+
+    <img src="https://i.imgur.com/HkqOgsT.jpeg" alt="Johnny Jupiter 3D print front" class="blog-post-image" style="width: 40%">
+    <img src="https://i.imgur.com/QDimcx7.jpeg" alt="Johnny Jupiter 3D print three-quarters" class="blog-post-image" style="width: 60%">
+
+    <hr>
+    <p>
+      Lastly, I decided to see what the ShaderFX plugin was all about, and boi was I not let down.<br>
+
+      ShaderFX comes with a couple of premade graphs, one of them being a PBR shader called "Stingray PBS."
+      While Stingray PBS sounds promising, it is a little lackluster since it does not support channel
+      packing right away. In comes the <a href="https://pontus-canback.artstation.com/pages/norrsken-pbr">Norrsken PBR shader made by Pontus Canback.</a>
+      Cheers to Pontus for getting such a good-looking shader that supports all of UE4's usual maps, as well as
+      channel packing. After the Norrksen PBR shader solved my most of my shader woes,
+      the only other struggle with ShaderFX was figuring out how to use its API to automate texture connections,
+      <a href="https://www.christiancorsica.com/blog/week-17-5-how-to-set-a-shaderfx-setting">which I go into it here.</a><br><br>
+
+      After automating material creation and texture connection <a href="https://github.com/MongoWobbler/piper">via a script</a>,
+      I assigned the Norrsken shader to all the current characters in Maya.
+      The image below is from Maya's viewport, real-time!
+    </p>
+
+    <img src="https://i.imgur.com/fhkXskI.png" alt="Current Character Line up" class="blog-post-image" style="width: 80%">
+
+    <p>
+      <br>
+      Comparison between Maya Blinn with only diffuse applied (top) vs. Norrsken Shader with
+      diffuse, normal, ambient occlusion, roughness, metallic, and emissive (bottom).
+    </p>
+
+    <img src="https://i.imgur.com/drlBWYs.png" alt="Waaoer with Maya Blinn shader" class="blog-post-image" style="width: 80%">
+    <p style="justify-content: center; text-align: center;">Waaoer with Maya Blinn shader<br><br></p>
+
+    <img src="https://i.imgur.com/feinbdz.png" alt="Waaoer with ShaderFX Norrksen PBR shader" class="blog-post-image" style="width: 80%">
+    <p style="justify-content: center; text-align: center;">Waaoer with ShaderFX Norrksen PBR shader</p>
+
+    <p>
+      <br>
+      I did not apply a normal map to the Maya Blinn because it looks like butt,
+      and since Maya Blinn is not a PBR shader, there are no plugs for me to put in
+      ambient occlusion, roughness, and metallic.
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

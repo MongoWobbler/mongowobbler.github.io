@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <link rel="stylesheet" href="../src/css/gist.css"/>
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(27)</script>
+
+
+    <p>
+      Week 26! That means there's been half of a year of active development!
+      About half of it has been game development, and the other half has been rigging/pipeline development
+      with a bit of concept, modeling, and texturing tossed in there too.
+      To celebrate this milestone, I'll share a few scripts on how to orient a transform to a face, edge,
+      or vertex normal in Maya.
+    </p>
+
+    <hr>
+
+    <p>
+      First, let's talk about the repeat last command in Maya. Every time an action is performed in Maya,
+      it gets registered to the "repeat last" which lets you press <code class="language-text">G</code> to repeat the
+      last action you performed. Repeat last is a pretty hand feature, and I never thought I used it much until
+      I needed to do something and my action wasn't registered.<br><br>
+
+      To register an action, we need a function. In this example, we'll be using the polyCube function;
+      it simply makes a cube in the scene. We'll also need to know the function's module and name
+      since the repeatLast command uses string formatting to register actions. Below we store the polyCube
+      function into a function variable.
+    </p>
+
+<pre><code class="language-python">import pymel.core as pm
+
+function = pm.polyCube</code></pre>
+
+    <p>
+      Note that <code class="language-python">pm.polyCube</code> does <b>not</b> include the parenthesis at the end
+      <code class="language-text">()</code>. Including the parenthesis would execute the function,
+      instead we want to store the function at the variable called <code class="language-text">function</code>.<br>
+
+      Now that we have the function stored, we can get some information about the function,
+      such as which module it comes from, and its name as a string. To get the following we'll use the
+      special variables <code class="language-python">__module__</code> and <code class="language-python">__name__</code>.
+    </p>
+
+<pre><code class="language-python">module = function.__module__
+function_name = function.__name__
+full_function = module + '.' + function_name</code></pre>
+
+    <p>
+      The repeatLast function takes in a MEL string, so to format to python, we'll use the module name and function names.
+    </p>
+
+    <pre><code class="language-python">pm.repeatLast(addCommand='python("import {}; {}()")'.format(module, full_function), addCommandLabel=full_function)</code></pre>
+
+    <p>Essentially, the command we register is:</p>
+
+    <pre><code class="language-python">import pymel.core.modeling; pymel.core.modeling.polyCube()</code></pre>
+
+    <p>When we put it all together, we get the following:</p>
+
+    <script src="https://gist.github.com/MongoWobbler/12bd65a9a3d177d9eb9a5c53e0451181.js"></script>
+
+    <hr>
+
+    <p>
+      Orienting a transform to a component's normal requires a bit of vector math and matrix composition.
+      Once a transform is oriented to a component's normal, such as face normal, orienting to another component's normal,
+      such as an edge or vertex normal, is easy since the logic is pretty similar.<br>
+
+      To rotate, we'll compose a matrix. To compose a matrix, we need three orthogonal direction vectors
+      (the X, Y, Z axis of the transform) <b>and</b> its position vector. We'll start with the easy one, the position:
+    </p>
+
+    <pre><code class="language-python">position = pm.xform(transform, q=True, ws=True, t=True)</code></pre>
+
+    <p>
+      Note, everything will be in <b>world space</b>, since it's an easy consistent space to do all our calculations.
+      Now we need a forward, up, and right vector. The forward is straightforward, that will be our normal vector.
+      Pymel has the wonderful function on components called <code class="language-text">getNormal</code>.
+    </p>
+
+    <pre><code class="language-python">forward = face.getNormal(space='world')</code></pre>
+
+    <p>
+      To figure out the up vector, we'll use the direction from the face to a random edge of the face.
+      To get one of the face's edges, we first get all of its edges and use one of their edge indices to figure out the full name.
+    </p>
+
+    <pre><code class="language-python">edges = face.getEdges()
+edge = pm.PyNode('{}.e[{}]'.format(face.node().name(), str(edges[0])))</code></pre>
+
+    <p>
+      To get the edge's and face's position, we select the component and get the position of the move in world space.
+    </p>
+
+    <pre><code class="language-python">pm.select(edge)
+pm.setToolTo('Move')
+edge_position = pm.dt.Vector(pm.manipMoveContext('Move', q=1, p=1))</code></pre>
+
+    <p>
+      Now that we have the edge's and face's position, we can figure out the direction with vector math.
+      The direction is found by subtracting the face position from the edge position and normalizing the result.
+    </p>
+
+    <pre><code class="language-python">up = (edge_position - face_position).normal()</code></pre>
+
+    <p>
+      We're finished with the tough part! Figuring out the right vector is easy because we already have two vectors,
+      all we have to do is cross-product.
+    </p>
+
+    <pre><code class="language-python">right = forward.cross(up).normal()</code></pre>
+
+    <p>
+      After we have the right vector, we must correct the up vector to make sure it is fully orthogonal by
+      doing another cross-product.
+    </p>
+
+    <pre><code class="language-python">up = forward.cross(right).normal()</code></pre>
+
+    <p>
+      Lastly, we compose the matrix. Note the order in which we place the vectors into the matrix list matters!
+      Currently, the Z-axis will be facing forward (parallel to the component's normal).
+    </p>
+
+    <pre><code class="language-python">matrix = pm.dt.Matrix(*[right.get(), up.get(), forward.get(), position])</code></pre>
+
+    <p>
+      And now that we have the matrix with the correct orientation, we can use
+      the <code class="language-text">xform</code> function to set the world matrix of our transform.
+    </p>
+
+    <pre><code class="language-python">pm.xform(transform, ws=True, m=matrix)</code></pre>
+
+    <hr>
+
+    <p>
+      Below are functions for orienting a transform to a face, edge, or vertex normal.
+    </p>
+
+    <script src="https://gist.github.com/MongoWobbler/ada806d15160c8558c7cc0cef7cb3e83.js"></script>
+
+    <p>
+      <br>
+      So you may be wondering, WTH is orienting a transform for a component useful for?
+      Personally, I use it for orienting joints, but I could see it being applied in modeling as well.
+      Below are the results for joints being created and oriented on all of a cube's components.
+    </p>
+
+    <img src="https://i.imgur.com/eZTIHhN.gif" alt="Joints being oriented to a cube's face, edge, and vertex normals" class="blog-post-image" style="width: 100%">
+
+    <hr>
+
+    <p>
+      PS: This week I also got the animation exporter stood up with clip data.
+      So several animations can be exported from one Maya file using the Clipper GUI.
+      The Clipper can easily be expanded in the future to include more information
+      than the current "start" and "end" frames, such as "hit" frame(s) or "attack" frame(s).
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

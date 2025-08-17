@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <link rel="stylesheet" href="../src/css/gist.css"/>
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(39)</script>
+
+
+  <p>
+    Selecting vertices that don't have a value of 1 is super helpful when smoothing long chains in Maya.
+    Below you'll find a script to help you select those vertices! Alternatively,
+    get <a href="https://github.com/MongoWobbler/piper">piper</a> and use the
+    <code class="language-text">Bones</code> menu to run the script 🙂
+  </p>
+
+  <img src="https://i.imgur.com/Pl7M448.gif" alt="Selecting fractionally weighted vertices in Maya on Waooer" class="blog-post-image" style="width: 100%">
+
+  <script src="https://gist.github.com/MongoWobbler/87cea9d9d8be8a5c31f564032cc169a0.js"></script>
+
+  <hr>
+
+  <p>
+    As for the game, I've implemented a new character, the mooer! Next up is character selection and soft referencing
+    to asynchronously load assets at run-time to reduce memory usage.
+  </p>
+
+  <img src="https://media.giphy.com/media/ZSaoC1cMLcZCXvhYgR/giphy.gif" alt="Mooer jumping up on falling physics objects" class="blog-post-image" style="width: 50%">
+
+  <hr>
+
+  <p>
+    And, to keep production tidy, I've made a Google sheet where I'll be keeping track of which animations
+    I've completed so far. Not all characters require all animations, since some ground states work as
+    attached states with some characters.
+  </p>
+
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQZ2hd7r_0FdNpkufuXxl969j0iKha4WnixVsyQEQiluvVH7uHQw86GU9-BW2uPX8a1loK06CwW8BAj/pubhtml?widget=true&amp;headers=false" style="width: 100%; aspect-ratio: 16/9; padding: 1rem;"></iframe>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

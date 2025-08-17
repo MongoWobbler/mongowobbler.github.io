@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(37)</script>
+
+
+    <p>
+      I started animating digitally in 2D with <a href="https://pivotanimator.net/">Pivot Animator</a> around
+      fifteen years ago, and stick figures have had
+      an impact on me ever since. So when a friend approached me to animate a soccer short with stick figures,
+      I hesitated to accept because I did not want to draw a bunch. However, after some thought,
+      I realized I could use this as an opportunity to create a nurbs surface twisty/bendy module in Maya <i>and</i>
+      make a proper 3D stick figure rig. Behold, a new character!
+    </p>
+
+    <div style="display: flex; justify-content: space-evenly; align-items: center;">
+      <img src="https://i.imgur.com/aSM1cBz.png" alt="Pivot Animator Stick Figure" style="width: 35%; object-fit: cover; padding: 0.25rem;">
+      <img src="https://i.imgur.com/fM6SCXO.png" alt="Sticker Rigged in Maya" style="width: 25%; object-fit: cover; padding: 0.25rem;">
+      <img src="https://i.imgur.com/QZ5vHlk.gif" alt="Sticker Idle Animation" style="width: 35%; object-fit: cover; padding: 0.25rem;">
+    </div>
+
+    <p>
+      To the left, we have the original pivot animator stick figure, used as the concept for the 3D model.
+      In the middle is the rig in Maya, and to the right is a quick idle animation from the 3D model.<br><br>
+
+      As I mentioned, I used this opportunity to work on
+      a <a href="https://github.com/MongoWobbler/piper/blob/8e5185a34962096155dcce65da641feac8ca15e1/piper/mayapy/rig/__init__.py#L1170">bendy rig module</a>, which
+      takes at least three transforms, and whose mid-transforms will be driven by the bendy module, example below:
+    </p>
+
+<pre class="language-python"><code>from piper.mayapy.rig import Rig
+
+
+with Rig() as rig:
+    rig.bendy(['lowerarm_r', 'lowerarm_twist_{}_r', 'hand_r'], name='Right Lowerarm')</code></pre>
+
+    <p>
+      Where <code class="language-python">{}</code>, would be replaced with 01, 02, 03, etc. based on transforms found.
+      Controls are automatically aiming at the next control in the chain which creates for a smoother bend 🙂
+    </p>
+
+    <img src="https://i.imgur.com/ZxkF2K3.png" alt="Bendy Rig on Sticker" class="blog-post-image" style="width: 50%">
+
+    <p>
+      Anyway, hopefully this semester is a bit lighter on my workload and I can continue on with this adventure!
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

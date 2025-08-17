@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(9)</script>
+
+
+    <p>
+      There are two schools of thought when it comes down to profiling and optimizing games.
+      One thinks it should be done early and often, as the game is being developed,
+      the developer(s) should think of ways to optimize the code to make the game as performant as possible.
+      The other thinks that optimizing should ONLY be done when needed.
+      They believe that developer time is more important, and hence do not worry about optimizing
+      until maybe the end of the project.<br><br>
+
+      I stand with the former school of thought, profiling and optimizing should be done early and often.
+      I believe that developing gameplay systems without profiling them could lead to a performance bottleneck
+      further in development if several of these systems are used at once.
+      Then it will require double the work to rewrite the system, IF it's even possible to optimize them.<br><br>
+
+      So, with that being said, I started learning about UE4's profiling tools
+      and figuring out how I can go about shrinking UE4's packaged size.<br><br>
+
+      I have written some of my notes below after watching the following video:
+    </p>
+      <iframe src="https://www.youtube.com/embed/EbXakIuZPFo" title="Profiling and Optimization in UE4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="blog-post-image" style="width: 100%; aspect-ratio: 16/9; padding: 1rem"></iframe>
+
+    <h2>Commands</h2>
+      <code class="language-text">Obj List</code> - Show everything consuming memory (storage) in the project. Useful to see stuff what you don't want packaged.<br>
+      <code class="language-text">STAT Unit</code> - Shows how long it takes for each thread to do its work. Frame is the TOTAL time, however, this is not a sum of the other threads, since they run in parallel.<br>
+      <code class="language-text">Stat StartFile</code> - Starts recording how long each thread takes to process.<br>
+      <code class="language-text">Stat StopFile</code> - Ends the recording. Creates a .ue4stats file to be loaded into the Session Frontend Profiler in UnrealFrontend.exe<br>
+      <code class="language-text">Stat Game</code> - Shows the different kinds of ticks and how long they take to update.<br>
+      <code  class="language-text">dumpticks</code> - Shows ALL actors currently ticking.<br>
+      <code class="language-text">Stat SceneRendering</code> - Shows everything that is being used for a draw call<br>
+      <code class="language-text">ProfileGPU</code> - Bring up the GPU Visualizer, which tells you all the passes the GPU is doing and how long they take using the ProfileGPU command, it is possible to get a rough estimate of the cost of the material, before calling the GPU visualizer, run the following commands:<br>
+
+    <div style="padding-left: 4rem;">
+<pre class="language-text"><code>r.rhicmdbypass 1
+r.rhithread.enable 0
+r.showmaterialdrawevents -1
+ProfileGPU</code></pre>
+  </div>
+
+    <p><br>
+      Make sure to turn off <strong>Frame Rate Smoothing</strong> and <strong>VSync</strong> when profiling.
+      Use the command <code  class="language-text">r.vsync 0</code> to turn off vsync.<br><br>
+    </p>
+
+    <p>A lot of these commands can be found in your viewport settings:</p>
+    <img src="https://i.imgur.com/gAfZq9u.png" alt="Profile Option in UE4" class="blog-post-image" style="width: 80%">
+
+    <p>
+      I still need to take a look at the <a href="https://docs.unrealengine.com/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/index.html">Unreal Insights</a>
+      tool, which is supposed to be the better/newer profiling tool from Epic.<br><br>
+
+      Using what I learned from the video. I noticed the game is currently GPU-bound when played in the
+      editor on the desktop. The best optimization I can make currently is to remove the sky material,
+      since that is what is making the GPU go to work.<br>
+      This also means that I need to come up with a debug menu for my game to be able to see all the profiling data
+      in the target device (iOS, Android), instead of my desktop.<br>
+      Also learned that a <b>FAndroidDeviceDetectionRunnable</b> thread is taking a huge chunk of time.
+      Maybe I should turn off the Android plugins and targets until I have an Android to test on.<br><br>
+
+      Now comes the travesty that is optimizing the package size, which I have not figured out quite yet.
+      First of all, cell phone carriers limit the download size of an app over cellular to 100 mb.
+      Therefore, the rule of thumb is to make your package be under 100 mb. Easy, right?
+      You would think that making a fresh UE4 mobile project with NOTHING in it would result in a
+      package size smaller than 100 mb, right??? Wrong, it ends up being easily over 200 mb. So what can we do?<br>
+
+      First, turn off ALL the plug-ins. Really, go HAM and turn off everything you are not actively using.
+      If you think you might maybe use it in the future but are not sure, turn it off.
+      Then in the Project Settings, under <code  class="language-text">Packaging</code> turn on the following:<br><br>
+
+      <b>
+        Created compressed cooked packages<br>
+        Exclude editor content when cooking<br><br>
+      </b>
+
+
+      COMING UP NEXT: Figuring out how to add the following without UE4's package builder failing.<br>
+    </p>
+
+<pre class="language-text"><code>bCompileAPEX=False
+bCompileBox2D=False
+bCompileICU=False
+bCompileSimplygon=False
+bIncludeADO=False
+bCompileSpeedTree=False
+bCompilePhysXVehicle=False
+</code></pre>
+    <br>
+    <a href="https://forums.unrealengine.com/community/community-content-tools-and-tutorials/1802966-reducing-the-size-of-your-ios-or-android-game">Credit to Spoondog for the build flags</a>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

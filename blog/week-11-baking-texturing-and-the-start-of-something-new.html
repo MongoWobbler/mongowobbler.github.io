@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(11)</script>
+
+
+    <p>
+      Got to finally try my hand out at Marmoset Toolbag. It is a great tool to present 3D art!<br>
+      I ended up refreshing the little of what I knew about Substance Painter to bake and fix ambient
+      occlusion and normal maps. Check out the result below with Marmoset Viewer's fully interactive viewport!
+    </p>
+
+    <iframe class="blog-post-marmoset" src="https://www.artstation.com/embed/33238277" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+
+    <p>
+      I also 3D printed the character since I needed to test out printing a file, and this was the perfect opportunity.
+      Now I know what to expect for my next 3D print.
+    </p>
+
+    <img src="https://i.imgur.com/fMnvIvX.jpeg" alt="Blobber 3D Print" class="blog-post-image" style="width: 70%">
+    <p>
+      <br>The next question is whether to rig and animate characters in Maya or Houdini.
+      Normally rigging and animating are done in Maya, however, Houdini is a huge powerhouse of a
+      toolset that is awaiting some animation exploration, and this seems like the perfect opportunity for it.
+      Below are the pros and cons of animating in each Digital Content Creation (DCC) package.<br><br>
+    </p>
+
+    <h2 id="maya">Maya</h2>
+      <h3 id="maya-pros">Pros</h3>
+        <ul>
+          <li>Familiar</li>
+          <li>Work on Matrix math/rigging</li>
+          <li>New opensource rigging system for artists</li>
+        </ul>
+        <h3 id="maya-cons">Cons</h3>
+        <ul>
+          <li>Overdone/saturated market</li>
+        </ul>
+        <h3 id="maya-maybes">Maybes</h3>
+        <ul>
+          <li>This project is more about trying new things, and I have been using Maya for over twelve years now.</li>
+        </ul>
+    <h2 id="houdini">Houdini</h2>
+      <h3 id="houdini-pros">Pros</h3>
+        <ul>
+          <li>Proceduralism? Not sure how this would work with animation.</li>
+          <li>New things to try out. Brain will grow.</li>
+        </ul>
+        <h3 id="houdini-cons">Cons</h3>
+        <ul>
+          <li>Houdini could be resilient since few people author character animations with it.</li>
+          <li>More time would be spent on building a rigging system and getting familiar with animation</li>
+        </ul>
+        <h3 id="houdini-maybes">Maybes</h3>
+        <ul>
+          <li>Could maybe opensource a rigging system too; however, it's likely to be harder or maybe even unnecessary.</li>
+        </ul>
+
+    <p>After much thought and consideration, I have decided to rig and animate in Maya, for now...
+      As much as I want to rig and animate in Houdini to try something new one,
+      I am already whelmed with the project given my internal deadline of one year.
+      So, Houdini's rigging and animating will have to wait for another project.<br><br>
+
+      With that being said, I have started the GitHub repo for the rigging and pipe system I will be using,
+      if you want to follow, collaborate, or use it for your project,
+      <a href="https://github.com/MongoWobbler/piper">feel free to peek a look here</a><br><br></p>
+
+    <h2 id="coming-up">COMING UP</h2>
+    <ul>
+      <li>Another character in the works that I hope to have presentable by next week.</li>
+      <li>Possibly some simple matrix constraints?</li>
+    </ul>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(46)</script>
+
+    <p>
+        It's been a while since I've made an update, a lot has happened since!
+    </p>
+
+    <ol>
+        <li><a href="https://github.com/MongoWobbler/piper">Piper</a> in Unreal!</li>
+
+        <li>Exporting data through attributes and using it as metadata in Unreal</li>
+
+        <li>Which means you can use the data to figure out where the asset came from and open/re-export the asset straight from the DCC! Currently on Maya is supported...</li>
+    </ol>
+
+    <img src="https://i.imgur.com/sZ1Pu4R.png" alt="Piper in Open in DCC script Unreal" class="blog-post-image" style="width: 50%">
+
+    <p style="text-align: center; font-size: 0.8rem; padding-left: 3rem; padding-right: 3rem; padding-bottom: 1rem">
+        Note that each function also grabs the docstring and adds it as a tooltip for the user to see what the button does, wow so helpful!
+    </p>
+
+    <p>
+        Other "fun" updates include a GUI for the piper installer, perforce module hooked into Maya, vendors directory,
+        functions to move rotate values to the joint orient and back, restructuring to remove "util.py" files, and
+        probably a lot of bug fixes here and there.
+    </p>
+
+    <hr>
+
+    <p>
+        As far as development for the game goes, it's sort of halted, mostly due to fatigue and interest in other
+        things. I do hope to get a motivational wind here and there to carry me through. The last update was streaming
+        in new backgrounds when the camera is no longer seeing the blend portion of the background,
+        which works well except I believe it's causing some crashes in the build, but not in the editor.
+        Which means it's time to add some kind of crash analytics to the project, so far
+        I've found <a href="https://github.com/ufna/CrashlyticsKit">this repo, CrashlyticsKit</a>, that may
+        be promising, but a quick Google of "crash analytics unreal engine ios" also yields promising results.
+    </p>
+
+        <img src="https://i.imgur.com/6dvn36B.png" alt="Texture Blend in Unreal Engine" class="blog-post-image" style="width: 50%">
+
+        <p style="text-align: center; font-size: 0.8rem; padding-left: 3rem; padding-right: 3rem; padding-bottom: 1rem">
+            Using a material to blend the two textures together which makes the image look seamless!
+        </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(40)</script>
+
+  <p>
+    Got a basic character selection which consists of two blueprints. One that handles asynchronously loading
+    skeletal meshes and idle animation to preview characters and another one that handles player input,
+    loading the character blueprint with the full character suite of animations,
+    and possessing the newly spawned pawn. I hope to expand the character selection blueprint to
+    handle touch and drag slide input from the player to have more characters to select from.
+  </p>
+
+  <img src="https://i.imgur.com/EzIbvNi.gif" alt="Character Selection between Blobber and Mooer in Unreal Engine" class="blog-post-image" style="width: 50%">
+
+  <p>
+    A note of caution from asynchronously loading objects is that blueprint "for loops" do not wait
+    for the load to finish before moving on to the next iteration of the loop. To asynchronously load inside a loop,
+    you have to make the loop yourself through a literal execution pin loop as seen below.
+  </p>
+
+  <img src="https://i.imgur.com/QSBTSps.png" alt="Screenshot of Async Loading Blueprint" class="blog-post-image" style="width: 100%">
+
+  <iframe style="width: 100%; aspect-ratio: 16/9;" src="https://blueprintue.com/render/twlax0qd/" scrolling="no" allowfullscreen></iframe>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

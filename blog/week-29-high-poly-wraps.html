@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <link rel="stylesheet" href="../src/css/gist.css"/>
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(30)</script>
+
+    <p>
+        I am not talking about a healthy chicken caesar wrap, instead I am talking about using a wrap deformer.
+        More specifically, the new proximity wrap deformer in Maya to drive high poly previews of the geometry.
+        Since the proximity wrap deformer is so new, Maya doesn't have an easy way to script it.
+        Thankfully, Autodesk
+        user <a href="https://forums.autodesk.com/t5/maya-programming/no-way-to-create-proximity-wrap-deformer-via-command-interface/td-p/9361692">richard.roberts75H4C was kind enough to share</a> his
+        methods on how to go about scripting it. Below is a function based on the forum post.<br><br>
+    </p>
+
+    <script src="https://gist.github.com/MongoWobbler/f6cd5fa7d9ae9a60d89fb6052f6078b6.js"></script>
+
+    <hr>
+
+    <p>
+        With the proximity wrap implemented onto the rig, the Blobber gets to dance in high poly!
+    </p>
+
+    <img src="https://media.giphy.com/media/K1MEfisFdfmePEPwtu/giphy.gif" alt="Blobber in high poly in Maya" class="blog-post-image" style="width: 50%">
+
+    <p>
+        With <a href="https://github.com/MongoWobbler/piper">piper</a>, it's straightforward to add and remove a
+        high-poly reference to an animation. Currently implemented in the Maya Piper Menu
+        via <code class="language-text">Piper -> Animation -> Reference High-Poly</code>. Script simply needs a
+        high-poly Maya file with the right naming conventions set in <a href="https://github.com/MongoWobbler/piper/blob/master/piper_config.py">piper_cofig.py</a>
+    </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

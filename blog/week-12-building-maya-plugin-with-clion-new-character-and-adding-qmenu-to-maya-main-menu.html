@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <link rel="stylesheet" href="../src/css/gist.css"/>
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(12)</script>
+
+
+    <p>
+        Jeez, that's a long title.<br><br>
+
+        I am trying out Jetbrains' CLion after using and enjoying their Rider app.
+        So since CLion uses CMake for build setup, I recommend following along
+        <a href="https://www.youtube.com/watch?v=2mUOt_F2ywo">Char Vernon's tutorial on how to compile Maya plugin's with CMake</a>
+        before attempting anything else on your own.<br><br>
+
+        Once you understand how CMake works, hop over to his
+        <a href="https://github.com/chadmv/cgcmake">GitHub page and grab the CMakeLists.txt and file structure</a>
+        to set up your project. Have CMake create the Visual Studio (VS) project.
+        You can use the following command to see what generators are available for CMake.
+    </p>
+
+    <pre><code class="language-bash">cmake -h</code></pre>
+
+    <p>
+        I used the following commands to generate the Visual Studio 2017 project for Maya 2020,
+        replace "YOUR_PROJECT_DIRECTORY_HERE" and "SUB_DIRECTORY_NAME_WITH_SOURCE_FILES":
+    </p>
+
+<pre><code class="language-bash">cd YOUR_PROJECT_DIRECTORY_HERE
+-G "Visual Studio 15 2017 Win64" -DMAYA_VERSION=2020
+./SUB_DIRECTORY_NAME_WITH_SOURCE_FILES
+</code></pre>
+
+    <p>
+        Now open CLion and create a new project at the directory that has the CMakeLists.txt file.<br>
+        In CLion's settings, Under Build, Execution, Deployment > Toolchains, make sure to select the right version
+        of Visual Studio to build the plugins. By default, CLion picks the latest version of VS;
+        this is usually not desired, since
+        <a href=" Maya 2020 uses Visual Studio 2017 to compile according to around-the-corner.">
+            Maya 2020 uses Visual Studio 2017 to compile, according to around-the-corner.</a>
+        Also, make sure to pick a x64 architecture.<br><br>
+
+        Lastly, make sure CLion can find FindMaya.cmake. You can place the FindMaya.cmake file inside
+        <code class="language-text">YOUR_PROJECT_DIRECTORY_HERE/cmake/Modules</code> and write the following in your
+        CMakeLists.txt file for CLion to find it
+    </p>
+
+    <pre><code class="language-cmake">list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules")</code></pre></p>
+
+    <p>
+        I didn't follow Chad Vernon's Sample Project exactly, which is why my notes above are a bit different.
+        The notes are mostly for myself, but hopefully others find it helpful too.
+        Anyway, on to something else more lighthearted, the poker! or the waooer! or the narwhal!
+        Character name is still a work in progress...<br><br>
+
+        Poker/Waooer/Narwhal
+    </p>
+
+    <iframe class="blog-post-marmoset" src="https://www.artstation.com/embed/33377981" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+
+    <p>
+        <br>The ray-traced render from Marmoset Toolbag came out looking clean.
+    </p>
+
+    <img src="https://i.imgur.com/py5dppx.png" alt="Waooer Render" class="blog-post-image" style="width: 70%">
+
+    <p>
+        <br>And this time around I remembered to capture the sculpting in VR while in Adobe Medium.
+        Medium is a great way of quickly getting the base shape, you can tell some adjustments were made later,
+        mostly around the mouth area.
+    </p>
+
+        <img src="https://i.imgur.com/jBKCZbf.jpeg" alt="Waooer in Adobe Medium" class="blog-post-image" style="width: 70%">
+
+    <p>
+        <br>Back over in scripting land, <a href="https://github.com/MongoWobbler/piper">piper continues to be in development</a>.
+        I have not posted any updates to GitHub in a few days since it is in an unstable and undocumented state,
+        however, I do have a simple export pipeline set up that I hope to share soon.<br><br>
+
+        I will leave this lil nugget of Maya script code below that I haven't really seen on the internet.
+        How to get Maya's main menu bar as a QWidget (QMenuBar, more specifically),
+        which you can then use to add your own menu to.
+    </p>
+
+    <script src="https://gist.github.com/MongoWobbler/e122f55007fa870c90b88217e1f3a466.js"></script>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

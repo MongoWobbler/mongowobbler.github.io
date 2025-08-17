@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(32)</script>
+
+    <p>
+        Wrapping up the twist module this week means there are no tasks left in <a href="https://github.com/MongoWobbler/piper/projects/1">Piper's To-Do list!</a>
+        There are some items left on the wish list that are not important for now, and I am sure I'll find plenty of
+        bugs as I start rigging and animating with Piper's rigging system.
+        Now I can start animating the game's characters, woo!<br><br>
+
+        Below is a short snippet on how to use Piper to rig a lower arm twist joint.
+    </p>
+
+<pre class="language-python"><code>import pymel.core as pm
+from piper.mayapy.rig import Rig
+
+
+rig = Rig()
+rig.prepare()
+
+root_joint = pm.PyNode('SKL:root')
+root_ctrl = rig.FK(root_joint, name='Root')[1][0]
+
+hand_joint = pm.PyNode('SKL:hand_l')
+lowerarm_joint = pm.PyNode('SKL:lowerarm_l')
+left_lowerarm_twist_joint = pm.PyNode('SKL:lowerarm_twist_01_l')
+rig.twist(left_lowerarm_twist_joint, lowerarm_joint, hand_joint, global_ctrl=root_ctrl, name='Left Arm')
+
+rig.finish()</code></pre>
+
+    <p>
+        After running the code above, we get a root control, and a left lower-arm twist control that twists
+        based on the weight attribute and the twist rotation of the hand joint as seen in the GIF below.
+    </p>
+
+    <img src="https://i.imgur.com/12AaXTr.gif" alt="Johnny Jupiter twisting his forearm" class="blog-post-image" style="width: 60%">
+
+    <p>
+        The weight attribute of the twist could be set to <code class="language-text">-1</code> to counteract the
+        twist rotation of the given joint too! This is useful in upper-arm twist joints, so the shoulder does not
+        inherit the rotation of the arm chain.<br><br>
+
+        The twist math is explained pretty well
+        by <a href="https://bindpose.com/maya-matrix-nodes-part-2-node-based-matrix-twist-calculator/">Vasil Shotarov in his blog</a>.
+        Meanwhile, <a href="https://www.chadvernon.com/blog/swing-twist/">Chad Vernon takes it to the next level</a> by
+        adding a swing attribute and condensing the
+        math into a single Maya node, which is what Piper is using.<br><br>
+
+        And now that <a href="https://github.com/MongoWobbler/piper/releases/tag/0.1-beta">Piper is wrapping up</a>, animation
+        comes next! That is if I am not bogged down with classes,
+        getting caught up with UE5, and Knockout City.
+    </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(38)</script>
+
+  <p>
+    Took a bit of a break, mostly to play Back 4 Blood (cheers to Turtle Rock Studios for an amazing game!)
+    and test out UE4 cinematic workflow with a soccer animation which you can catch below!
+  </p>
+
+  <iframe src="https://www.youtube.com/embed/SG_oBA-NsTY" title="Futsal Project 214 animation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="blog-post-image" style="width: 100%; aspect-ratio: 16/9; padding: 1rem"></iframe>
+
+  <hr>
+
+  <p>
+    Back to the game project this blog is mostly about; I've been mostly re-familiarizing myself with the movement model
+    since it was prototyped in blueprint, moving away all animation blueprint logic for its event graph,
+    fixing bugs, updating to 4.27, and building the engine from source. The good news is that updating to 4.27 or
+    maybe building from source fixed an annoying bug where UE kept having to build all materials every time a single
+    change to a material was made. Anyway, not a lot more to share besides suggesting
+    using <code class="language-python">os.path.relpath()</code> when trying to get the <b>relative</b> path in
+    python instead of <code class="language-python">lstrip()</code> or <code class="language-python">split()</code>.
+  </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

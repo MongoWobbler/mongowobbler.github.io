@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(44)</script>
+
+  <p>
+    With Unreal Engine 5 being released this past week, I now have to decide whether I jump onto the latest
+    and greatest or lock the engine version to 4.27.2. Below are the pros of each.
+  </p>
+
+  <h3>Pros of upgrading to UE5</h3>
+  <ul>
+    <li>Continued support from Epic</li>
+
+    <li>Likely to have new features and possible performance enhancements</li>
+
+    <li>Building and packaging for iOS with M1 Mac and XCode 13.3 works</li>
+
+    <li>Will likely support newer versions of iOS</li>
+  </ul>
+
+  <h3>Pros of staying in UE4</h3>
+  <ul>
+    <li>Proven and tested to work on iOS</li>
+
+    <li>Unbloated by nanite/lumen</li>
+
+    <li>Currently, supports more and older versions of iOS (up to iOS 12.0)</li>
+  </ul>
+
+  <p>
+    After modifying some of the Unreal Build Tool Mac toolchain to work with XCode 13.3,
+    I was able to build UE4 from source, however, packaging failed, and I decided not to investigate further. On
+    the other hand, I was able to build UE5 from source and package the game with little trouble,
+    besides having to reinstall XCode. I still have to test the chaos physics solver. However, PhysX
+    still works in UE5, for now. The forward shading rendering model works in UE5 and turning off nanite
+    and lumen is pretty straightforward, just have to head over to the rendering section of the
+    project settings and turn off any Lumen things.<br><br>
+
+    So, at the end of the day, it looks like there are more benefits to upgrading to UE5.
+    The downsides being that an empty packaged game is now bigger than before (~400mbs),
+    and that due to <a href="https://en.wikipedia.org/wiki/Epic_Games_v._Apple">Epic's conflict with Apple</a>, they
+    have not personally tested UE5 on a live iOS production,
+    therefore, <a href="https://en.wikipedia.org/wiki/Here_be_dragons">expect dragons</a>.
+  </p>
+
+  <hr>
+
+  <p>
+    Thanks to <a href="https://forums.unrealengine.com/t/how-to-fade-out-a-material/303171/9">RyanB for the initial idea</a>.
+    I've shared an image of the material below, and when you are ready
+    for the material to fade out, in blueprint/code you'll also need to follow the steps below the image.
+  </p>
+
+  <img src="https://i.imgur.com/3v9Qwy2.png" alt="Material Fade Out Graph" class="blog-post-image" style="width: 100%">
+
+  <ol>
+    <li>Make sure you have a dynamic material instance.</li>
+
+    <li>Set the <code class="language-text">TimeToFade</code> scalar parameter of the dynamic material instance to the amount of time you'll want the fade to take in seconds.</li>
+
+    <li>Set the <code class="language-text">TimeOfStep</code> scalar parameter of the dynamic material instance to the current time in seconds.</li>
+
+    <li>Set the <code class="language-text">Opacity</code> scalar parameter of the dynamic material instance to 0.</li>
+  </ol>
+
+  <p>
+    Here is what it looks like in C++
+  </p>
+
+<pre class="language-cpp"><code>UMaterialInstanceDynamic* material_instance = static_mesh_component->CreateAndSetMaterialInstanceDynamicFromMaterial(0, static_mesh_component->GetMaterial(0));
+
+UWorld* world = GetWorld();
+material_instance->SetScalarParameterValue("TimeToFade", 2.0f);
+material_instance->SetScalarParameterValue("TimeOfStep", UGameplayStatics::GetTimeSeconds(world));
+material_instance->SetScalarParameterValue("IsOpaque", 0.0f);</code></pre>
+
+  <p>The benefit of this system vs. blueprint tick is you could disable tick on the actors/components
+    if they don't need them anymore, saving some CPU resources; however, your material will be slightly more expensive.</p>
+
+  <p style="color: rgba(122, 122, 122, 0.5); justify-content: center; font-size: 2rem; align-content: center; text-align: center;">Happy fading!</p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(41)</script>
+
+    <p>
+        This week's focus centered around rigging bugs, switching over to use <a href="https://github.com/mottosso/Qt.py">Qt.py</a>, learning
+        about git submodules, using the Maya's workspaceControl command instead of inheriting MayaMixin's to create
+        widgets, and a quick idle animation of Johnny Jupiter!
+    </p>
+
+    <img src="https://i.imgur.com/vLf04vh.gif" alt="Johnny Jupiter's idle animation" class="blog-post-image" style="width: 50%">
+
+    <hr>
+
+    <p>
+        The advantage of using the workspaceControl command to handle widgets in Maya
+        is that maya will store the window size, location, and parent for you.
+        So, when you go show the widget again, it'll show up where you previously had placed it,
+        even when you have it docked! Using mostly <a href="https://zurbrigg.com/courses">Chris Zurbrigg's teachings</a>, I
+        modified a <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/ui/widget.py">controller class</a> that
+        handles the workspaceControl commands. Take the Maya Vert Selector; for example, a lot of it can be reused by
+        copying and pasting. I wish there was a more elegant solution, but the only thing that really needs
+        replacing is the class name.<br>
+        <a href="https://github.com/mottosso/Qt.py">https://github.com/mottosso/Qt.py</a>
+    </p>
+
+<pre class="language-python"><code>class MayaVertSelector(QtWidgets.QDialog):
+
+    label = 'Weighted Vert Selector'
+    instance = None  # useful to be singleton while window is open
+    ui_name = label.replace(' ', '')  # same as label, but without spaces
+    create_command = 'import {0}; {0}.show()'.format(__name__)
+    closed_command = 'import {0}; {0}.unregister()'.format(__name__)
+
+    def __init__(self, *args, **kwargs):
+        super(MayaVertSelector, self).__init__(*args, **kwargs)
+
+        self.setObjectName(self.__class__.ui_name)
+        self.controller = None
+
+    def showInMaya(self):
+        """
+        Creates the controller to handle Maya integration with this class' widget. This should be called instead of widget.show
+        """
+        self.controller = Controller(self.__class__.ui_name)
+
+        if self.controller.exists():
+            self.controller.restore(self)
+        else:
+            self.controller.create(self.label, self, ui_script=self.create_command, close_script=self.closed_command)
+
+        self.controller.setVisible(True)
+
+    def close(self, *args, **kwargs):
+        """
+        Overriding close method to use the controller class function instead.
+
+        Returns:
+            (string): Name of workspace control closed.
+        """
+        self.controller.close()
+
+
+def get():
+    """
+    Gets the instance to the widget since it is meant to be a singleton.
+
+    Returns:
+        (MayaVertSelector): Widget created.
+    """
+    MayaVertSelector.instance = MayaVertSelector() if MayaVertSelector.instance is None else MayaVertSelector.instance
+    return MayaVertSelector.instance
+
+
+def unregister():
+    """
+    Unregisters widget from the widget manager.
+    """
+    if MayaVertSelector.instance is None:
+        return
+
+    QtCompat.delete(MayaVertSelector.instance)
+    MayaVertSelector.instance = None
+
+
+def show():
+    """
+    Convenience method for showing the MayaVertSelector widget.
+
+    Returns:
+        (MayaVertSelector): Widget shown.
+    """
+    instance = get()
+    instance.showInMaya()
+    return instance</code></pre>
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

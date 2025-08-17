@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(10)</script>
+
+    <p>
+      The game's first character, blobber!<br><br>
+
+      Blobber went through a lot of programs to get to where he is, and he still has more to go!
+      I'll break down the process below:<br><br>
+
+      Ideation begins on paper with a sketch.
+    </p>
+
+    <img src="https://i.imgur.com/NPueYFb.jpeg" alt="Blobber Sketch" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>Sketch is then moved on to digital form via Photoshop tracing to refine lines and shapes.
+    </p>
+
+    <img src="https://i.imgur.com/GXUtSIM.png" alt="Blobber Photoshop" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>Sketch is then brought into VR with Adobe Medium, where the sculpting begins.
+      This is the best program for laying out shapes quickly and getting a good feel for the sculpting
+      because of how easy it is to view it from all sides and quickly iterate on the shape.
+      Unfortunately, getting fine detail can be tough in Medium, but it's ok because that is what ZBrush excels at.
+    </p>
+
+    <img src="https://i.imgur.com/SPA97in.png" alt="Blobber in Maya" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>VR sculpt is brought onto Topogun for retopology (creation of lower poly mesh)
+    </p>
+
+    <img src="https://i.imgur.com/NQQrA2z.png" alt="Blobber in Topogun" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>Low poly mesh is brought into Houdini and/or Maya for UVs. (Side FX Labs is a godsend with their auto UV SOPs)
+    </p>
+
+    <img src="https://i.imgur.com/4dHaRbf.png" alt="Blobber UVs" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>UVed low poly mesh is brought into Zbrush to create a higher poly mesh with more details.
+      Creases are made at this stage, along with any non-drastic changes we might want to make,
+      such as bringing out the mouth a bit more, or more eye bag sag.
+      Side note: I am surprised how well I have retained Zbrush after not using it for five years.
+    </p>
+
+    <img src="https://i.imgur.com/E7UhrNu.png" alt="Blobber in Zbrush" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>Bake maps??? Will probably end up baking in Substance Painter, but I have not gotten there yet.<br><br>
+    </p>
+
+    <img src="https://i.imgur.com/DMepgVr.png" alt="Blobber low-poly vs high-poly comparison" class="blog-post-image" style="width: 90%">
+
+    <p style="justify-content: center; text-align: center;">
+      Low poly (Left) at roughly 1,000 faces, High poly (Right) at roughly one million faces. No maps are present.<br><br>
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

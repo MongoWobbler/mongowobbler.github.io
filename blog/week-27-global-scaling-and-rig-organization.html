@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(28)</script>
+
+
+    <p>
+        I wish I could say adding global scaling was a walk in the park, but it was not.
+        Especially with the volumetric IK joints and space switching. However, I managed to come up on top and
+        conquered it with multiplication. Below is the result.
+    </p>
+
+    <img src="https://i.imgur.com/kyCYCUn.gif" alt="Blobber being globally scaled" class="blog-post-image" style="width: 60%">
+
+    <hr>
+
+    <p>
+        One of my personal goals for piper's rigging system was to make it without using any Maya constraints.
+        The byproduct of a constraint-less rig system is a very clean-looking hierarchy, woo!
+        It also helps that the Rig class now organizes everything it makes into the rig group(s) 😉
+    </p>
+
+    <img src="https://i.imgur.com/F6V1jRg.png" alt="Maya Outliner showing Blobber's rig hierarchy" class="blog-post-image" style="width: 30%">
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

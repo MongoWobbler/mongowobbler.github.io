@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(43)</script>
+
+
+  <p>
+    "Hello!" says Johnny Jupiter.
+  </p>
+
+  <img src="https://media.giphy.com/media/o1E8IurAIHZRzAbnmm/giphy.gif" alt="Johnny Jupiter's Waving Animation!" class="blog-post-image" style="width: 50%">
+
+  <p>
+    I had to upgrade from a 2012 MacBook Pro that could no longer build an app with the minimum supported
+    version of the Unreal Engine 4.27 to one of the latest computers Apple has released, the M1 Mac Mini, to build
+    and package the project this blog is about. Unfortunately, being on the latest architecture/release/product/version
+    can come with growing pains, which is why I'm writing my notes on how to build a UE4 project on the Mac.
+  </p>
+
+  <ol>
+    <li>Download UE4 from the Epic Launcher (<a href="https://forums.unrealengine.com/t/variable-set-but-not-used-errors-while-building-source-code-in-xcode/512462">Currently building from source fails on M1 Mac with XCode 13.3</a>,
+      so you'll need to get the binaries this way)</li>
+
+    <li>Download XCode, make sure it's in your applications folder</li>
+
+    <li>Open XCode and accept its terms and conditions</li>
+
+    <li>Install Mono (version 6.x is fine) from <a href="https://www.mono-project.com/">https://www.mono-project.com/</a></li>
+
+    <li>Go to:
+      <pre class="language-shell"><code>/Users/Shared/Epic Games/(YOUR ENGINE VERSION)/Engine/Build/BatchFiles/Mac/</code></pre>
+    </li>
+
+    <li>Run the GenerateProjectFiles shell script in a terminal and replace <code class="language-text">/MyProject.uproject</code> with the full path to your .uproject
+<pre class="language-shell"><code>./GenerateProjectFiles.sh -project="/MyProject.uproject" -game</code></pre>
+    </li>
+
+    <li>Open your .xcworkspace in XCode.</li>
+
+    <li>If using XCode 13.3 or above, maybe? In your project’s .Target.cs (prolly for all .Target.cs) found under the source folder of your project, add the following
+      lines, <a href="https://forums.unrealengine.com/t/layernames-error-bricking-my-mac-projects/508040">thanks to nak2k31 for the hint!</a>
+<pre class="language-csharp"><code>bOverrideBuildEnvironment = true;
+AdditionalCompilerArguments = "-Wno-unused-but-set-variable";</code></pre>
+    </li>
+
+    <li>Build and run the Xcode project 🙂</li>
+
+  </ol>
+
+  <hr>
+
+  <p>
+    To package the project into an iOS app for testing, I recommend you watch the following video.
+  </p>
+
+    <iframe src="https://www.youtube.com/embed/z_sFHLXmexg" title="Packaging UE4 iOS Game onto iOS Device with M1 Mac" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="blog-post-image" style="width: 100%; aspect-ratio: 16/9; padding: 1rem"></iframe>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

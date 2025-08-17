@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(15)</script>
+
+    <p>
+      Got to a good checkpoint with <a href="https://github.com/MongoWobbler/piper">piper</a>,
+      still not ready to rig and animate, but I have a good start!
+      Currently capable of generating FK and IK chains based on just two joint inputs per chain,
+      the start and end of the joint chain.
+    </p>
+
+<pre class="language-python"><code>
+import pymel.core as pm
+import piper.mayapy.rig.build as build
+
+build.IK(pm.PyNode('thigh_f_l'), pm.PyNode('foot_f_l'))
+build.FK(pm.PyNode('thigh_f_r'), pm.PyNode('foot_f_r'))
+</code></pre>
+
+    <p>
+      <br>
+      The IK control is a custom transform node made with the Maya C++ API that takes care of soft IK,
+      stretching, pole vector locking and joint sliding.
+    </p>
+
+    <img src="https://i.imgur.com/QVKmTWf.gif" alt="Blobber IK" class="blog-post-image" style="width: 70%">
+
+    <p>
+      <br>
+      The FK controls are a lot simpler, but use matrix constraints and Maya's new offset parent matrix
+      to keep everything clean.
+    </p>
+
+
+    <img src="https://i.imgur.com/iPHMCWn.gif" alt="Blobber FK" class="blog-post-image" style="width: 70%">
+
+    <a href="https://github.com/MongoWobbler/piper">Source code for piper is available here.</a>
+
+    <p>
+      <br>
+      I started classes this past week, so I didn't have a lot of extra time to work on a new character.
+      Maybe next week I'll have a new exciting character to show!
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

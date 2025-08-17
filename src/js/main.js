@@ -185,11 +185,13 @@ class HeaderComponent extends HTMLElement {
 
 class FooterComponent extends HTMLElement {
     connectedCallback() {
+        const year = new Date().getFullYear();
+
         this.innerHTML = `
 <footer id="footer">
     <div class="footer-container">
         <div class="social-links">
-            <p class="copyright">&copy; 2025</p>
+            <p class="copyright">&copy; ${year}</p>
 
             <a href="https://linkedin.com/in/christian-corsica" class="social-link" title="LinkedIn" target="_blank">
                 <i class="fa-brands fa-linkedin fa-2xl"></i>

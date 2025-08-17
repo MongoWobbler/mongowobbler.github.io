@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(4)</script>
+
+    <p>
+      Made some pumpkins in Houdini. This was good practice for future characters.<br>
+      <a href="https://drive.google.com/file/d/1ly2IkItq7RrbpwLldD2LHUOdnC4oNh06/view?usp=sharing">Download the .hda</a> and make your own pumpkin! <br>
+      Also, note the huge difference renderers, a ground plane, and subsurface scattering can have on the final image.
+      <br><br>
+      Top image rendered in UE4 with ray tracing. Bottom image rendered in Houdini Mantra.
+    </p>
+
+    <img src="https://i.imgur.com/Frnb8uY.png" alt="Pumpkins in UE4" class="blog-post-image" style="width: 80%">
+    <img src="https://i.imgur.com/2NHMWk4.png" alt="Pumpkins in Houdini" class="blog-post-image" style="width: 80%">
+
+    <p>
+      Happy trick or treating!
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

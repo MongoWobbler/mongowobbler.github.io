@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(33)</script>
+
+
+    <p>
+      Running the rig through the ropes, finding bugs, areas of improvements, and animating! The blob spins!
+    </p>
+
+    <img src="https://i.imgur.com/zJ3a7QN.gif" alt="Blobber spinning" class="blog-post-image" style="width: 70%">
+
+    <hr>
+
+    <p>
+      I mostly used this animation to test if I export non-uniform scaling from Maya into UE4, but unfortunately,
+      the results came out sheared. Instead, I will be scaling the root joint (for now) non-uniformingly in real-time
+      by reading a curve through the Modify Bone anim node in the Animation Blueprint.<br><br>
+
+      I have also been brainstorming what animations I'll need to author for a fun experience,
+      so I got some exciting work ahead!
+    </p>
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

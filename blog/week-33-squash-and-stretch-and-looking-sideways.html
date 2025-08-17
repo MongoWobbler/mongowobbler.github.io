@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(34)</script>
+
+
+    <p>
+      Did some tests with root joint squash and stretch scaling through the skeleton vs. runtime squash and stretch
+      via bone transform modification read from a curve, and to my slight surprise, the results are different!
+      Check out the video below. The left side is runtime squash/stretch, the right side is baked keys squash/stretch.
+    </p>
+
+    <iframe src="https://www.youtube.com/embed/f0IvKvqK5H8" title="Squash and Stretch baked vs. runtime comparison" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="blog-post-image" style="width: 100%; aspect-ratio: 16/9; padding: 1rem"></iframe>
+
+    <hr>
+
+    <p>
+      Got the character looking left and right based on jump direction input too!
+    </p>
+
+    <img src="https://i.imgur.com/XR2xReL.gif" alt="Blobber Jumping in Unreal Engine" class="blog-post-image" style="width: 100%">
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

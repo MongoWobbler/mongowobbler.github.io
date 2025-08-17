@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+  <script src="../src/js/prism.js"></script>
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(18)</script>
+
+    <p>
+      Maya's ShaderFX has a lot of names for its options: attribute, setting, property, value.<br>
+      Exposed attributes can be changed regularly with PyMel, for example, for a ShaderFX material named
+      <code class="language-text">MI_Waooer</code>, the attribute name can be found by changing its value and looking at
+      the script editor for clues.
+    </p>
+
+    <img src="https://i.imgur.com/4tRrerl.png" alt="ShaderFX Script Editor Example" class="blog-post-image" style="width: 100%">
+
+    <p>
+      Then we can do the usual:
+    </p>
+
+    <pre class="language-python"><code>pm.PyNode('MI_Waooer').Use_Base_Color.set(True)</code></pre>
+
+    <p>
+      <br>
+      For ShaderFX settings, the options above the attributes in the attribute editor,
+      it gets slightly more complicated because we have to use the ShaderFX commands,
+      which are kind of undocumented, and it's all in MEL.
+      <a href="https://gist.github.com/tm8r/faac10a7660213e57da363fa3d5813d6">Luckily, GitHub user tm8r created some kind of documentation.</a>
+      <br>
+
+      If you are reading over the documentation and wondering, WTH is a "node_uniqueID"???
+      Fret not, press the big <code class="language-text">Open ShaderFX</code> button in the attribute editor after selecting
+      the ShaderFX material. Then go to the settings menu at the top of the window and press <code class="language-text">Show Node ID</code>,
+      voilà, unique node ID's everywhere. Note, ShaderFX graph's <b>node ID is saved</b> with the scene and
+      <b>is not discarded</b> unlike Maya's UUIDs.
+    </p>
+
+    <img src="https://i.imgur.com/GaAlMnS.png" alt="ShaderFX Show Node ID" class="blog-post-image" style="width: 50%">
+
+    <p>
+      <br>
+      In this example, I'll be changing the bool's Value property to True.
+      <b>Note the unique ID of my bool node is 1291.</b>
+    </p>
+
+    <img src="https://i.imgur.com/PE1J9yX.png" alt="ShaderFX Bool Node" class="blog-post-image" style="width: 70%">
+
+    <p>
+      To figure out the name of the property we want to set, list all the properties a node has with the
+      following command and find the proper name.
+    </p>
+
+    <pre class="language-MEL"><code>shaderfx -sfxnode MATERIAL_NAME -listProperties UNIQUE_NODE_ID;</code></pre>
+    <br>
+    <pre class="language-MEL"><code>shaderfx -sfxnode "MI_Waooer" -listProperties 1291;</code></pre>
+
+    <p>
+      <br>
+      In my case, I get this long list of properties:
+    </p>
+
+    <pre class="language-text"><code style="white-space: pre-wrap">helpaction name width note socketdefaultvalue socketswizzlevalue version posx posy collapsed previewswatch group activesocket activesocketlabel compoundassignment hasbeenedited value exposesetting uiorder uigroup</code></pre>
+
+    <p>
+      <br>
+      Now, that I know the property name is called <code class="language-text">value</code> and that my property is of type bool
+      (not to be confused with the node type), I can execute the following command. The key flag is <code class="language-text">-edit_bool</code>.
+      Make sure to <a href="https://gist.github.com/tm8r/faac10a7660213e57da363fa3d5813d6">browse the documentation</a>
+      for the appropriate type of flag based on the property type.
+    </p>
+
+    <pre class="language-MEL"><code>shaderfx -sfxnode MATERIAL_NAME -edit_bool UNIQUE_NODE_ID PROPERTY_NAME DESIRED_VALUE;</code></pre>
+    <br>
+    <pre class="language-MEL"><code>shaderfx -sfxnode "MI_Waooer" -edit_bool 1291 "value" false;</code></pre>
+
+    <p>
+      <br>
+      In case you are wondering about my personal use for setting a property, the Norrsken PBR shader has a setting
+      called Opacity driven by a bool that sets whether a diffuse map has clipping or blending opacity.
+    </p>
+
+    <img src="https://i.imgur.com/OPGipmh.png" alt="Norrsken PBR Shader Settings" class="blog-post-image" style="width: 70%">
+
+    <p>
+      If your diffuse map does not have any alpha and is not meant to be transparent, it should be left as
+      <code class="language-text">Clipping</code>. However, if the diffuse map does have alpha and is meant to be transparent,
+      this setting needs to be set to <code class="language-text">Blending</code>. Below is a quick way of testing for alpha values
+      and setting the property.
+    </p>
+
+<pre class="language-python"><code># file nodes have a nice attribute that tests whether a file has alpha or not
+opacity_tester = pm.createNode('file', name='opacityTest')
+opacity_tester.fileTextureName.set(texture_path)
+
+# set opacity blending mode to blending instead of clipping if file has alpha
+if opacity_tester.fileHasAlpha.get():
+    pm.mel.eval('shaderfx -sfxnode "{}" -edit_bool 1291 "value" false;'.format(material.nodeName()))
+
+pm.delete(opacity_tester)
+</code></pre>
+
+
+
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

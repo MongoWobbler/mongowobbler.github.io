@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOG | Technical Animator</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <script src="../src/js/main.js"></script>
+  <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+  <div id="blog-post" class="blog-post">
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(26)</script>
+
+
+    <p>
+      Much like last week included volumetric FK scaling of joints. This week we have volumetric IK scaling of
+      joints with animation retargeting via file references. Below is a quick animation of the Mooer
+      with the volumetric IK on all four legs
+    </p>
+
+    <img src="https://i.imgur.com/naHNYG2.gif" alt="Mooer jumping in Maya with volumetric IK turned on in leg controls" class="blog-post-image" style="width: 100%">
+
+    <p>
+      Below is the same animation in UE4. When I first exported the animation, I thought scaling interpolation was
+      messing up, but upon closer inspection, FBX's built-in key baker tends to overshoot tangents on export.
+      After baking the animation manually and reexporting, scaling worked like a charm in UE4
+    </p>
+
+    <img src="https://i.imgur.com/WVbLLTz.gif" alt="Mooer jumping in Unreal Engine with joint scaling exported from Maya" class="blog-post-image" style="width: 100%">
+
+    <p>
+      Below we see the result of switching the Mooer file reference with the Blobber in Maya,
+      and then exporting that animation into UE4.
+    </p>
+
+    <img src="https://i.imgur.com/p8IQaZ5.gif" alt="Mooer's jump animation being retargeted onto Blobber and exported into UE" class="blog-post-image" style="width: 100%">
+
+    <p>
+      Volumetric IK and live retargeting were the two big risky features, but now that they are in the rearview,
+      it is smooth sailing from here, right? Anyway, onward to the next rigging adventure soon:
+      global scaling and rig organization.
+    </p>
+
+    <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+  </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

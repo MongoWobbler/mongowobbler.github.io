@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <link rel="stylesheet" href="../src/css/gist.css"/>
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(41)</script>
+
+    <p>
+        I was tired of having to script both a left and right-side function to rig characters that are symmetrical. Therefore,
+        <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/mirror.py">I wrote a script</a> that
+        parses through all the args and kwargs of a function and swaps all the
+        left and right keywords. In the example below, I am
+        using <code class="language-text">_l</code>, and <code class="language-text">_r</code>, as the side
+        suffixes, as well as <code class="language-text">_l_</code> and <code class="language-text">_r_</code>, and
+        <code class="language-text">Left</code> and <code class="language-text">Right</code> as possible strings to
+        swap but can be edited to match another convention. At the very bottom of the <a href="https://gist.github.com/MongoWobbler/7ac66d1f63bc1b1042bdbce3ca48ea75">gist</a> are
+        examples on how to use the mirror decorator and function.
+    </p>
+
+    <script src="https://gist.github.com/MongoWobbler/7ac66d1f63bc1b1042bdbce3ca48ea75.js"></script>
+
+    <p>
+        Now that you've scrolled this far down, check out a happy narwhal wagging its tail 🙂
+    </p>
+
+    <img src="https://media.giphy.com/media/aPUOHnOVKiN4Cchnwp/giphy.gif" alt="Waooer wagging its tail" class="blog-post-image" style="width: 50%">
+
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SCRIPTS | Technical Animator</title>
+    <title>Scripts | Technical Animator</title>
+    <link rel="stylesheet" href="./src/css/main.css">
+    <script src="./src/js/main.js"></script>
+    <script>loadTheme(); relativePath = "."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <head-component></head-component>
 </head>
 <body>
+<header-component></header-component>
+
 <main id="main">
 
+    <script type="module" defer>
+        import { videos } from "./src/js/config/videos.js"
+        import { generateVideos} from "./src/js/video.js";
+        generateVideos(videos.scripts)
+    </script>
+
 </main>
+
+<footer-component></footer-component>
 </body>
 </html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(36)</script>
+
+
+    <img src="https://i.imgur.com/lC3DSZc.gif" alt="Mooer Munching on Grass Animation" class="blog-post-image" style="width: 80%">
+
+    <p>
+        Quick idle animation for the señor Mooer above.
+        All squash and stretch animations working in game for Blobber below,
+        animations are similar to a bouncing ball animation exercise!
+    </p>
+
+    <iframe src="https://www.youtube.com/embed/KC8ZNyVbgn4" title="Blobber Jumping in Unreal Engine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="blog-post-image" style="width: 100%; aspect-ratio: 16/9; padding: 1rem"></iframe>
+
+    <p>
+        Current animation list includes:
+    </p>
+
+    <ul>
+        <li>Grounded Idle</li>
+
+        <li>Pre-jump squash/squat</li>
+
+        <li>Stretched Jump pose</li>
+
+        <li>Jumping Idle</li>
+
+        <li>Stretched Landing pose</li>
+
+        <li>Falling Idle</li>
+    </ul>
+
+    <p>
+        Animations are triggered and blended based on jump events and jumping time in the animation blueprint.
+    </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

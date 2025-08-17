@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../src/css/prism.css" data-noprefix />
+    <script src="../src/js/prism.js"></script>
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(16)</script>
+
+        <p>
+            My friend, Nick Cannon, made some super awesome concepts a while back, and I promised him
+            I would sculpt some in 3D. Alas, we have Johnny Jupiter!
+        </p>
+
+        <iframe class="blog-post-marmoset" src="https://www.artstation.com/embed/34374093" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" scrolling="no"> </iframe>
+
+        <p>
+            Check out his adorable illustrations at <a href="https://nickcannonillustration.com/">Nick Cannon Illustration</a><br>
+            And follow him for more wonderful art at <a href="https://www.instagram.com/nickcannonillustration/?hl=en">@nickcannonillustration</a><br><br>
+
+            Now that Johnny Jupiter has his suit on, we blast away into the land of spaces (pun intended).
+            Chad Vernon came out with a <a href="https://www.chadvernon.com/blog/space-switching-offset-parent-matrix/">really cool matrix space switcher and matching workflow</a> using the
+            new offsetParentMatrix attribute in Maya and the new blendMatrix node.
+            I grabbed Mr. Vernon's idea and modified it slightly to better match my workflow.
+            The latest version of <a href="https://github.com/MongoWobbler/piper">piper</a> includes
+            <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/rig/space.py">my version of space matching/switching</a> through matrices.<br><br>
+
+            The workflow for space switching with piper goes something like this:
+        </p>
+
+        <ol>
+            <li><p>Add spaces to a transform node by:</p>
+<pre><code class="language-python">
+import pymel.core as pm
+import piper.mayapy.rig.space as space
+
+# select all the spaces you want to assign, and lastly,
+# select the transform/control that will be driven by these spaces
+selected = pm.selected()
+space.create(selected[:-1], selected[-1])
+</code></pre></p>
+            </li>
+
+            <li><p>Then switch between spaces by:</p>
+<pre><code class="language-python">space.switch(selected[-1], selected[0].nodeName() + 'Space')</code></pre></p>
+            </li>
+        </ol>
+
+        <p>
+            Where the transform with the space attributes is the first argument,
+            and the space to switch to is the name of the attribute.<br>
+            Hopefully, I'll get a GUI working to simplify the space switching process even more!
+        </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>

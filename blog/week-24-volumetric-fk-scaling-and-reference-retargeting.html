@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BLOG | Technical Animator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <script src="../src/js/main.js"></script>
+    <script>loadTheme(); relativePath = ".."; addMainListeners()</script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <head-component></head-component>
+</head>
+<body>
+<header-component></header-component>
+
+<main id="main">
+    <div id="blog-post" class="blog-post">
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(25)</script>
+
+
+        <p>
+            Got some pretty exciting results this week after experimenting with scale.
+            Maya scaling works in UE4 and Unity since segment scale compensate is turned off and scaling is uniform
+            (no shearing), woo! Here is an image explaining the main gist of the system.
+        </p>
+
+        <img src="https://i.imgur.com/IzYIFQf.png" alt="Maya Node Editor showing how to volumetrically stretch a joint" class="blog-post-image" style="width: 100%">
+
+        <p>
+            To explain what's going on above, first a matrix is composed of the translation of the joint that
+            will be scaled. The reason for composing a matrix out the translation instead of using the world matrix
+            is to remove any cycling since the result will be fed into the joint's scale attribute.
+            Then, the composed matrix is multiplied by the parent matrix and then decomposed to get the world position.
+            The world position of the child joint or the control driving the child joint is plugged in to a distance node.
+            Then distance is divided by the rest/initial distance.
+            The initial distance is the distance of the two joints when they are bound to the mesh.
+            The inverse of the current distance is divided by the rest distance (inverse is just 1 divided by X),
+            and plugged back into the scale of the first joint. When everything is plugged in,
+            we should see the first joint being scaled volumetrically whenever the distance of the two joints changes
+            (usually by translation). There is an example of this system towards the end of the GIF below.
+        </p>
+
+        <img src="https://i.imgur.com/TNoOXVd.gif" alt="Blobber's leg being scaled, squashed, and stretched" class="blog-post-image" style="width: 100%">
+
+        <p>
+            I moved the node system pictured above into the Piper FK controls compute method via a C++ plug-in
+            since almost all the FK controls could benefit from it. Other cool scaling features of the FK chain
+            are full chain scaling, or individual joint scaling via the inner controls as seen in the GIF above.<br><br>
+
+            Another Piper rig feature that will help tremendously with animation work is the live retargeting of
+            animation. By storing a few of the joint's bind data as attributes, such as its world matrix,
+            Piper can offset the controls when a mesh reference is replaced. As long as joint and attribute
+            names remain consistent, Maya will keep its connections. Example below:
+        </p>
+
+        <img src="https://i.imgur.com/GsxGYtX.gif" alt="Blobber's animation being retargeted onto Mooer" class="blog-post-image" style="width: 100%">
+
+        <p>
+            Animation on the Blobber is retargeted onto the Mooer just by replacing the skinned mesh reference.
+            Maybe I won't have to animate <i>that</i> much... right?
+        </p>
+
+        <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
+    </div>
+</main>
+
+<footer-component></footer-component>
+</body>
+</html>
