@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 7: Discovering Weaknesses/Deploying</title>
     <link rel="stylesheet" href="../src/css/main.css">
     <script src="../src/js/main.js"></script>
@@ -15,7 +15,7 @@
 <header-component></header-component>
 <main id="main">
 <div id="blog-post" class="blog-post">
-<script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(3)</script>
+<script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(7)</script>
 
 <p>
 This week I have been discovering weaknesses about myself. Not the game.
@@ -54,7 +54,7 @@ return starting_location + (velocity * time) + FVector(0.0f, 0.0f, UPhysicsSetti
 <ol>
     <li><p>Get the right version of macOS. It might not be the latest! In my case, I was on Mojave, I needed Catalina, and the latest version out was Big Sur.</p>
     </li>
-    <li><p>Download Xcode, not just any Xcode, the one that the specific version of the UE4 version you are using was built with, which is usually not the latest, and not the one found in some of the documentation either, like this <a href="https://docs.unrealengine.com/en-US/Platforms/Mobile/iOS/SDKRequirements/index.html">one</a>. Rather, it is found in the release notes of the UE4 version you are using.</p>
+    <li><p>Download Xcode, not just any Xcode, the one that the specific version of the UE4 version you are using was built with, which is usually not the latest, and not the one found in some of the documentation either, like this <a target="_blank" href="https://docs.unrealengine.com/en-US/Platforms/Mobile/iOS/SDKRequirements/index.html">one</a>. Rather, it is found in the release notes of the UE4 version you are using.</p>
     </li>
     <li><p>Buy an Apple Developer membership ($100 a year), just to get some certificate stuff and whatnot's (I need to learn more about this...) I do think there is a way to develop and test your app without it, but I feel like this might be the path of least resistance. When creating the profile, make sure you select iCloud capability.</p>
     </li>
@@ -65,7 +65,7 @@ return starting_location + (velocity * time) + FVector(0.0f, 0.0f, UPhysicsSetti
         <p style="word-wrap: break-word"> a. Go to <b>HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Apple Inc.\Apple Mobile Device Support\Shared</b></p>
         <p> b. Add a new string value with key &quot;<b>MobileDeviceDLL</b>&quot;</p>
         <p> c. Add the value of <b>C:\Program Files\Common Files\Apple\Mobile Device Support\MobileDevice.dll</b></p>
-        <p> d. Thank <a href="https://www.parallelcube.com/2019/09/08/remote-ios-build-on-ue4-part-2/">parallelcube</a> for figuring this part out.</p>
+        <p> d. Thank <a target="_blank" href="https://www.parallelcube.com/2019/09/08/remote-ios-build-on-ue4-part-2/">parallelcube</a> for figuring this part out.</p>
     </li>
     <li><p>After doing a rain dance, importing the certificate and profile into the iOS tab of the project settings in editor, AND setting &quot;Automatic Signup&quot;, with the correct &quot;Team ID&quot; value right below it, packaging the game finally worked.</p>
     </li>
@@ -76,7 +76,7 @@ return starting_location + (velocity * time) + FVector(0.0f, 0.0f, UPhysicsSetti
 </ol>
 
 <hr>
-<p>I made a Trello to keep production organized, check it out <a href="https://trello.com/b/jwVqxomf">here!</a> <a href="https://trello.com/b/jwVqxomf">https://trello.com/b/jwVqxomf</a></p>
+<p>I made a Trello to keep production organized, check it out <a target="_blank" href="https://trello.com/b/jwVqxomf">here!</a> <a target="_blank" href="https://trello.com/b/jwVqxomf">https://trello.com/b/jwVqxomf</a></p>
 
 <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>
 </div>

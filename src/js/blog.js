@@ -63,7 +63,6 @@ export function addBlogFooter() {
     const blogPostElement = document.getElementById('blog-post');
 
     const divider = document.createElement('hr');
-    divider.style = 'margin-top: 1rem;';
     blogPostElement.appendChild(divider);
 
     const row = document.createElement('div');
@@ -159,6 +158,7 @@ function getDescription(text, maxLength) {
  */
 export async function generateBlogGallery() {
     const mainElement = document.getElementById('main');
+
     for (const blog of blogs.reverse()) {
 
         const filename = `blog/${blog.filename}`;
@@ -187,7 +187,7 @@ export async function generateBlogGallery() {
         link.appendChild(text);
 
         const date = document.createElement('p');
-        date.style = 'font-size: 0.8rem';
+        date.className = 'blog-column-text-date';
         date.textContent = blog.date;
         text.appendChild(date);
 
@@ -200,8 +200,8 @@ export async function generateBlogGallery() {
         const htmlText = await resp.text();
         const firstParagraph = htmlText.split("<p>")[1].split("</p>")[0];
         const cleanedFirstParagraph = firstParagraph.replace(/<[^>]*>(.*?)<\/[^>]*>/gi, '$1');  // removes any HTML tags from the text
-        description.textContent = getDescription(cleanedFirstParagraph, 150);
+        description.className = 'blog-column-text-description';
+        description.textContent = getDescription(cleanedFirstParagraph, 150).replaceAll("<br>", "\n").trimStart();
         text.appendChild(description);
-
     }
 }

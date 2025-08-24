@@ -36,6 +36,7 @@ export function generateVideos(videos)
                     "gyroscope; picture-in-picture; web-share";
                 videoIframe.referrerpolicy = "strict-origin-when-cross-origin";
                 videoIframe.allowfullscreen = true;
+                videoIframe.src = video.link + "?rel=0&modestbranding=1&origin=https://christiancorsica.com";
                 break;
             case media.vimeo:
                 videoIframe.allow = "autoplay; fullscreen; picture-in-picture; clipboard-write; " +
@@ -58,6 +59,7 @@ export function generateVideos(videos)
             const videoScript = document.createElement('a');
             videoScript.href = video.script;
             videoScript.textContent = "\n" + video.script;
+            videoScript.target = "_blank";
             videoDescription.appendChild(videoScript);
         }
     }

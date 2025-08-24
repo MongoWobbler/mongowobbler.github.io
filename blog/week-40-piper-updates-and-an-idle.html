@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG | Technical Animator</title>
     <link rel="stylesheet" href="../src/css/main.css">
     <script src="../src/js/main.js"></script>
@@ -19,7 +19,7 @@
         <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(41)</script>
 
     <p>
-        This week's focus centered around rigging bugs, switching over to use <a href="https://github.com/mottosso/Qt.py">Qt.py</a>, learning
+        This week's focus centered around rigging bugs, switching over to use <a target="_blank" href="https://github.com/mottosso/Qt.py">Qt.py</a>, learning
         about git submodules, using the Maya's workspaceControl command instead of inheriting MayaMixin's to create
         widgets, and a quick idle animation of Johnny Jupiter!
     </p>
@@ -32,12 +32,12 @@
         The advantage of using the workspaceControl command to handle widgets in Maya
         is that maya will store the window size, location, and parent for you.
         So, when you go show the widget again, it'll show up where you previously had placed it,
-        even when you have it docked! Using mostly <a href="https://zurbrigg.com/courses">Chris Zurbrigg's teachings</a>, I
-        modified a <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/ui/widget.py">controller class</a> that
+        even when you have it docked! Using mostly <a target="_blank" href="https://zurbrigg.com/courses">Chris Zurbrigg's teachings</a>, I
+        modified a <a target="_blank" href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/ui/widget.py">controller class</a> that
         handles the workspaceControl commands. Take the Maya Vert Selector; for example, a lot of it can be reused by
         copying and pasting. I wish there was a more elegant solution, but the only thing that really needs
         replacing is the class name.<br>
-        <a href="https://github.com/mottosso/Qt.py">https://github.com/mottosso/Qt.py</a>
+        <a target="_blank" href="https://github.com/mottosso/Qt.py">https://github.com/mottosso/Qt.py</a>
     </p>
 
 <pre class="language-python"><code>class MayaVertSelector(QtWidgets.QDialog):

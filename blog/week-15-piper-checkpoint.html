@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BLOG | Technical Animator</title>
   <link rel="stylesheet" href="../src/css/main.css">
   <script src="../src/js/main.js"></script>
@@ -19,14 +19,13 @@
     <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(15)</script>
 
     <p>
-      Got to a good checkpoint with <a href="https://github.com/MongoWobbler/piper">piper</a>,
+      Got to a good checkpoint with <a target="_blank" href="https://github.com/MongoWobbler/piper">piper</a>,
       still not ready to rig and animate, but I have a good start!
       Currently capable of generating FK and IK chains based on just two joint inputs per chain,
       the start and end of the joint chain.
     </p>
 
-<pre class="language-python"><code>
-import pymel.core as pm
+<pre class="language-python"><code>import pymel.core as pm
 import piper.mayapy.rig.build as build
 
 build.IK(pm.PyNode('thigh_f_l'), pm.PyNode('foot_f_l'))
@@ -50,7 +49,7 @@ build.FK(pm.PyNode('thigh_f_r'), pm.PyNode('foot_f_r'))
 
     <img src="https://i.imgur.com/iPHMCWn.gif" alt="Blobber FK" class="blog-post-image" style="width: 70%">
 
-    <a href="https://github.com/MongoWobbler/piper">Source code for piper is available here.</a>
+    <a target="_blank" href="https://github.com/MongoWobbler/piper">Source code for piper is available here.</a>
 
     <p>
       <br>

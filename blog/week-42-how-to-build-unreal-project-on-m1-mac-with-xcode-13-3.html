@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BLOG | Technical Animator</title>
   <link rel="stylesheet" href="../src/css/main.css">
   <script src="../src/js/main.js"></script>
@@ -33,14 +33,14 @@
   </p>
 
   <ol>
-    <li>Download UE4 from the Epic Launcher (<a href="https://forums.unrealengine.com/t/variable-set-but-not-used-errors-while-building-source-code-in-xcode/512462">Currently building from source fails on M1 Mac with XCode 13.3</a>,
+    <li>Download UE4 from the Epic Launcher (<a target="_blank" href="https://forums.unrealengine.com/t/variable-set-but-not-used-errors-while-building-source-code-in-xcode/512462">Currently building from source fails on M1 Mac with XCode 13.3</a>,
       so you'll need to get the binaries this way)</li>
 
     <li>Download XCode, make sure it's in your applications folder</li>
 
     <li>Open XCode and accept its terms and conditions</li>
 
-    <li>Install Mono (version 6.x is fine) from <a href="https://www.mono-project.com/">https://www.mono-project.com/</a></li>
+    <li>Install Mono (version 6.x is fine) from <a target="_blank" href="https://www.mono-project.com/">https://www.mono-project.com/</a></li>
 
     <li>Go to:
       <pre class="language-shell"><code>/Users/Shared/Epic Games/(YOUR ENGINE VERSION)/Engine/Build/BatchFiles/Mac/</code></pre>
@@ -53,7 +53,7 @@
     <li>Open your .xcworkspace in XCode.</li>
 
     <li>If using XCode 13.3 or above, maybe? In your project’s .Target.cs (prolly for all .Target.cs) found under the source folder of your project, add the following
-      lines, <a href="https://forums.unrealengine.com/t/layernames-error-bricking-my-mac-projects/508040">thanks to nak2k31 for the hint!</a>
+      lines, <a target="_blank" href="https://forums.unrealengine.com/t/layernames-error-bricking-my-mac-projects/508040">thanks to nak2k31 for the hint!</a>
 <pre class="language-csharp"><code>bOverrideBuildEnvironment = true;
 AdditionalCompilerArguments = "-Wno-unused-but-set-variable";</code></pre>
     </li>

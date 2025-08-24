@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Site: Who Dis?</title>
   <link rel="stylesheet" href="../src/css/main.css">
   <script src="../src/js/main.js"></script>
@@ -14,7 +14,7 @@
 
 <main id="main">
   <div id="blog-post" class="blog-post">
-    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(4)</script>
+    <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(47)</script>
 
     <p>
       I was tired of paying moneys to Wix.com on a subscription basis just for letting me have
@@ -39,19 +39,19 @@
       </h1>
 
     <ul>
-      <li>When writing these blogs, doing it in raw HTML sucks. I write them in Obsidian with Markdown and then port them over to HTML using a <a href="https://markdowntohtml.com/">Markdown to HTML Converter.</a></li>
-      <li>Similarly, with math equations, HTML has a child format called MathML which sucks to write, which is why <a href="https://temml.org/">Temml - Convert TeX to MathML</a> exists!</li>
+      <li>When writing these blogs, doing it in raw HTML sucks. I write them in Obsidian with Markdown and then port them over to HTML using a <a target="_blank" href="https://markdowntohtml.com/">Markdown to HTML Converter.</a></li>
+      <li>Similarly, with math equations, HTML has a child format called MathML which sucks to write, which is why <a target="_blank" href="https://temml.org/">Temml - Convert TeX to MathML</a> exists!</li>
       <li>I really wish there was a way to reuse the Head section in HTML more easily, but I ran into errors trying to encapsulate it.</li>
       <li>WebStorm as an IDE is OK. Ran into a fun issue where the out-of-the-box WebStorm server includes the project name in the address, so you can&#39;t use absolute paths in the HTML files. Worked around it by specifying a <code>relativePath</code> variable in every file that lets file get back to the root of the project to be able to find anything from there. The other solution would have been to run my own server with Apache or something else, which maybe I&#39;ll do, but I just wanted to code and figuring out how to use CSS, JavaScript, and HTML and have them all talk to each other was already challenging enough.</li>
       <li>Making the website mobile compatible feels like making a whole new website, but it does make you either clean up the CSS or hack something in. For example, the navigation bar in the mobile version is always present but offscreen. Not sure how efficient that is, but it works!</li>
       <li>Adding a dark theme to the site was a fun challenge. My only issue with themes is that I have no idea where to place the theme switcher button! It&#39;s next to the logo currently, which looks fine on mobile, but the desktop version makes the logo look a bit sunny...</li>
-      <li>Finding resources to learn how front-end works was challenging at first. At last, I stumbled across <a href="https://hyperskill.org/">Hyperskill</a> Frontend Developer course and their study plan section, which is a great index of everything needed to understand the front-end. Instead of making you go through learning what&#39;s a variable, you can skip what you already know and go straight into the unknown! Personally, I had trouble understanding how the three languages all talked to each other, but the course made it pretty clear</li>
-      <li>WebStorm doesn't work if you don't include the <code>.html</code> suffix in the <code>href</code> link. This is frustrating. According to a <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/13807792622738-webstorm-project-problem-overview-not-recognizing-errors-in-html-variable-usage">JetBrains support post</a> it works in PhpStorm. So may need to switch to that IDE even though I don't plan on writing any PHP, which makes no sense.</li>
+      <li>Finding resources to learn how front-end works was challenging at first. At last, I stumbled across <a target="_blank" href="https://hyperskill.org/">Hyperskill</a> Frontend Developer course and their study plan section, which is a great index of everything needed to understand the front-end. Instead of making you go through learning what&#39;s a variable, you can skip what you already know and go straight into the unknown! Personally, I had trouble understanding how the three languages all talked to each other, but the course made it pretty clear</li>
+      <li>WebStorm doesn't work if you don't include the <code>.html</code> suffix in the <code>href</code> link. This is frustrating. According to a <a target="_blank" href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/13807792622738-webstorm-project-problem-overview-not-recognizing-errors-in-html-variable-usage">JetBrains support post</a> it works in PhpStorm. So may need to switch to that IDE even though I don't plan on writing any PHP, which makes no sense.</li>
     </ul>
 
     <br>
     <p>
-      Check out the source code for this site at <a href="https://github.com/mongowobbler/mongowobbler.github.io">https://github.com/mongowobbler/mongowobbler.github.io</a>
+      Check out the source code for this site at <a style="word-wrap: break-word" href="https://github.com/mongowobbler/mongowobbler.github.io">https://github.com/mongowobbler/mongowobbler.github.io</a>
     </p>
 
     <script type="module">import { addBlogFooter } from "../src/js/blog.js"; addBlogFooter()</script>

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG | Technical Animator</title>
     <link rel="stylesheet" href="../src/css/main.css">
     <script src="../src/js/main.js"></script>
@@ -17,17 +17,17 @@
 
 <main id="main">
     <div id="blog-post" class="blog-post">
-        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(41)</script>
+        <script type="module">import { addBlogHeader } from "../src/js/blog.js"; addBlogHeader(42)</script>
 
     <p>
         I was tired of having to script both a left and right-side function to rig characters that are symmetrical. Therefore,
-        <a href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/mirror.py">I wrote a script</a> that
+        <a target="_blank" href="https://github.com/MongoWobbler/piper/blob/master/piper/mayapy/mirror.py">I wrote a script</a> that
         parses through all the args and kwargs of a function and swaps all the
         left and right keywords. In the example below, I am
         using <code class="language-text">_l</code>, and <code class="language-text">_r</code>, as the side
         suffixes, as well as <code class="language-text">_l_</code> and <code class="language-text">_r_</code>, and
         <code class="language-text">Left</code> and <code class="language-text">Right</code> as possible strings to
-        swap but can be edited to match another convention. At the very bottom of the <a href="https://gist.github.com/MongoWobbler/7ac66d1f63bc1b1042bdbce3ca48ea75">gist</a> are
+        swap but can be edited to match another convention. At the very bottom of the <a target="_blank" href="https://gist.github.com/MongoWobbler/7ac66d1f63bc1b1042bdbce3ca48ea75">gist</a> are
         examples on how to use the mirror decorator and function.
     </p>
 
